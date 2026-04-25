@@ -3,7 +3,6 @@ import { Fraunces, Inter, Allura } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
-import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -116,7 +115,6 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
         <Preloader />
-        <CustomCursor />
         <SmoothScrollProvider>
           <Nav />
           <PageTransition>

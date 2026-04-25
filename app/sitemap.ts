@@ -9,5 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/menu`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/story`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/visit`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/reserve`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
   ];
 }

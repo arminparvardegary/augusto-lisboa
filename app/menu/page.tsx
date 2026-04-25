@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 const sections = [
   {
     id: "coffee",
-    eyebrow: "01 · The Bar",
     heading: "Coffee, made slowly.",
     image: images.espresso,
     items: [
@@ -28,7 +27,6 @@ const sections = [
   },
   {
     id: "brunch",
-    eyebrow: "02 · All Day",
     heading: "Brunch, until the room empties.",
     image: images.brunchOverhead,
     items: [
@@ -41,7 +39,6 @@ const sections = [
   },
   {
     id: "toasts",
-    eyebrow: "03 · Open-Faced",
     heading: "Toasts, on country sourdough.",
     image: images.toast,
     items: [
@@ -53,7 +50,6 @@ const sections = [
   },
   {
     id: "pastry",
-    eyebrow: "04 · From the Oven",
     heading: "Pastry, baked at six.",
     image: images.pastries,
     items: [
@@ -71,7 +67,6 @@ export default function MenuPage() {
     <>
       <section className="relative bg-cream pt-40 md:pt-56 pb-24 md:pb-32">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
-          <div className="label-micro text-espresso/70 mb-8">The Menu · Spring 2026</div>
           <MaskedHeading
             text="A short menu, written every season."
             as="h1"
@@ -117,9 +112,6 @@ export default function MenuPage() {
               </div>
 
               <div className="md:col-span-7 md:pt-12">
-                <div className="label-micro text-espresso/65 mb-6">
-                  {section.eyebrow}
-                </div>
                 <MaskedHeading
                   text={section.heading}
                   as="h2"

@@ -48,7 +48,7 @@ export default function Preloader() {
           >
             <div className="text-center">
               <div className="script-accent text-espresso text-5xl md:text-6xl">Augusto</div>
-              <div className="label-micro text-espresso/70 mt-2">Lisboa · Belém</div>
+              <div className="text-xs tracking-[0.2em] uppercase text-espresso/70 mt-2">Lisboa · Belém</div>
             </div>
             <div className="relative h-px w-48 overflow-hidden bg-espresso/15">
               <motion.div

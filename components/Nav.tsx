@@ -29,6 +29,9 @@ export default function Nav() {
     };
   }, [open]);
 
+  const linkClass =
+    "text-xs tracking-[0.2em] uppercase text-espresso/80 hover:text-ochre transition-colors duration-300";
+
   return (
     <>
       <motion.header
@@ -49,30 +52,23 @@ export default function Nav() {
         <div className="relative mx-auto flex max-w-[1600px] items-center justify-between px-6 md:px-12">
           <Link
             href="/"
-            className="group flex items-baseline gap-2"
+            className="flex items-baseline gap-2"
             aria-label="Augusto Lisboa home"
           >
             <span className="script-accent text-espresso text-2xl md:text-3xl leading-none">
               Augusto
             </span>
-            <span className="label-micro text-espresso/60 hidden sm:inline">
-              Lisboa
-            </span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-10">
             {links.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="label-micro text-espresso/80 hover:text-ochre transition-colors duration-300"
-              >
+              <Link key={l.href} href={l.href} className={linkClass}>
                 {l.label}
               </Link>
             ))}
             <Link
-              href="/visit"
-              className="label-micro text-espresso border-b border-ochre pb-1 hover:text-ochre transition-colors"
+              href="/reserve"
+              className="text-xs tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-1 hover:text-ochre transition-colors"
             >
               Reserve
             </Link>
@@ -81,7 +77,7 @@ export default function Nav() {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="md:hidden label-micro text-espresso"
+            className="md:hidden text-xs tracking-[0.2em] uppercase text-espresso"
             aria-label="Open menu"
           >
             Menu
@@ -103,7 +99,7 @@ export default function Nav() {
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="label-micro"
+                className="text-xs tracking-[0.2em] uppercase"
                 aria-label="Close menu"
               >
                 Close
@@ -118,7 +114,11 @@ export default function Nav() {
               }}
               className="flex flex-col gap-8 px-6 pt-16"
             >
-              {[{ href: "/", label: "Home" }, ...links].map((l) => (
+              {[
+                { href: "/", label: "Home" },
+                ...links,
+                { href: "/reserve", label: "Reserve" },
+              ].map((l) => (
                 <motion.div
                   key={l.href}
                   variants={{
@@ -136,8 +136,8 @@ export default function Nav() {
                 </motion.div>
               ))}
             </motion.nav>
-            <div className="absolute inset-x-0 bottom-0 px-6 py-8 label-micro text-cream/60">
-              Rua de Belém · Lisboa · @augustolisboapt
+            <div className="absolute inset-x-0 bottom-0 px-6 py-8 text-xs tracking-[0.2em] uppercase text-cream/60">
+              Rua de Belém · Lisboa
             </div>
           </motion.div>
         )}

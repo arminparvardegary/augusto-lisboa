@@ -18,7 +18,6 @@ export default function HomePage() {
       <HeroParallax
         image={images.heroInterior}
         imageAlt="Sunlit arches and warm interior at Augusto Lisboa, Belém"
-        eyebrow="Augusto Lisboa · Belém · Est. 2021"
         headline="A better"
         scriptWord="morning"
         tail="in Belém."
@@ -28,13 +27,7 @@ export default function HomePage() {
       <section id="story" className="bg-cream py-32 md:py-48">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <div className="label-micro text-espresso/70">Specialty Coffee</div>
-              <div className="label-micro text-espresso/70 mt-3">
-                Made in Belém
-              </div>
-            </div>
-            <div className="md:col-span-8">
+            <div className="md:col-span-12">
               <MaskedHeading
                 text="Augusto is a sunlit room on Rua de Belém — slow brunches, careful coffee, and a kitchen that treats every plate as a small, generous gesture."
                 as="h2"
@@ -49,7 +42,7 @@ export default function HomePage() {
                 </p>
                 <Link
                   href="/story"
-                  className="mt-10 inline-flex items-center gap-3 label-micro text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
+                  className="mt-10 inline-flex items-center gap-3 text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
                 >
                   Read our story <span className="text-ochre">→</span>
                 </Link>
@@ -70,15 +63,10 @@ export default function HomePage() {
               className="object-cover"
             />
           </div>
-          <div className="mt-6 flex justify-between label-micro text-espresso/55">
-            <span>The room — Rua de Belém</span>
-            <span>01 / 04</span>
-          </div>
         </div>
       </section>
 
       <HorizontalScroll
-        eyebrow="Signature · Daily"
         heading="A short menu, served with intention."
         cards={[
           { title: "Flat White", subtitle: "Coffee", image: images.coffeePour },
@@ -93,7 +81,6 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5 md:pt-32">
-              <div className="label-micro text-espresso/70 mb-6">Our Space</div>
               <MaskedHeading
                 text="Tiles, oak, and a long arched window."
                 as="h2"
@@ -127,39 +114,30 @@ export default function HomePage() {
 
       <section className="bg-warmwhite py-32 md:py-48">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
-          <div className="mb-16 md:mb-24 grid grid-cols-1 gap-6 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <div className="label-micro text-espresso/70">The Menu</div>
-            </div>
-            <div className="md:col-span-8">
-              <h2 className="heading-display text-espresso text-4xl md:text-6xl text-balance">
-                Four small <em className="script-accent text-ochre not-italic">menus</em>,
-                changing with the season.
-              </h2>
-            </div>
+          <div className="mb-16 md:mb-24">
+            <h2 className="heading-display text-espresso text-4xl md:text-6xl text-balance max-w-3xl">
+              Four small <em className="script-accent text-ochre not-italic">menus</em>,
+              changing with the season.
+            </h2>
           </div>
 
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-10">
             <ProjectCard
-              eyebrow="Coffee"
               title="The Bar"
               href="/menu#coffee"
               image={images.espresso}
             />
             <ProjectCard
-              eyebrow="Brunch"
               title="All Day"
               href="/menu#brunch"
               image={images.flatlayBrunch}
             />
             <ProjectCard
-              eyebrow="Toasts"
               title="Open-Faced"
               href="/menu#toasts"
               image={images.toast}
             />
             <ProjectCard
-              eyebrow="Pastry"
               title="From the Oven"
               href="/menu#pastry"
               image={images.pastries}
@@ -169,7 +147,7 @@ export default function HomePage() {
           <ScrollReveal className="mt-16 flex justify-end">
             <Link
               href="/menu"
-              className="label-micro text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
+              className="text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
             >
               View the full menu →
             </Link>
@@ -179,13 +157,12 @@ export default function HomePage() {
 
       <section className="bg-cream border-y border-espresso/10">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-16">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-5 items-center">
-            <div className="label-micro text-espresso/60">As featured in</div>
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4 items-center">
             {["Tripadvisor 2025", "Time Out Lisboa", "Conde Nast", "Monocle"].map(
               (name) => (
                 <ScrollReveal
                   key={name}
-                  className="heading-display text-espresso/70 text-xl md:text-2xl text-center md:text-left"
+                  className="heading-display text-espresso/70 text-xl md:text-2xl text-center"
                 >
                   <span>{name}</span>
                 </ScrollReveal>
@@ -199,25 +176,29 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
           <div className="grid grid-cols-1 gap-16 md:grid-cols-12 md:gap-20 items-end">
             <div className="md:col-span-7">
-              <div className="label-micro text-cream/70 mb-8">Come Sit</div>
               <MaskedHeading
                 text="Open daily from eight to six. The kettle is already warm."
                 as="h2"
                 className="text-4xl md:text-6xl lg:text-7xl text-cream"
               />
-              <ScrollReveal delay={0.3} className="mt-10">
+              <ScrollReveal delay={0.3} className="mt-10 flex flex-wrap gap-6">
                 <Link
                   href="/visit"
-                  className="label-micro text-cream border-b border-ochre pb-2 hover:text-ochre transition-colors"
+                  className="text-sm tracking-[0.2em] uppercase text-cream border-b border-ochre pb-2 hover:text-ochre transition-colors"
                 >
                   Plan your visit →
+                </Link>
+                <Link
+                  href="/reserve"
+                  className="text-sm tracking-[0.2em] uppercase text-cream border-b border-cream/40 pb-2 hover:text-ochre hover:border-ochre transition-colors"
+                >
+                  Reserve a table →
                 </Link>
               </ScrollReveal>
             </div>
             <div className="md:col-span-5">
               <ScrollReveal className="space-y-8">
                 <div>
-                  <div className="label-micro text-cream/55 mb-3">Address</div>
                   <p className="leading-relaxed text-cream/90">
                     Rua de Belém
                     <br />
@@ -225,7 +206,6 @@ export default function HomePage() {
                   </p>
                 </div>
                 <div>
-                  <div className="label-micro text-cream/55 mb-3">Hours</div>
                   <p className="leading-relaxed text-cream/90">
                     Monday — Sunday
                     <br />
@@ -233,7 +213,6 @@ export default function HomePage() {
                   </p>
                 </div>
                 <div>
-                  <div className="label-micro text-cream/55 mb-3">Reach Us</div>
                   <p className="leading-relaxed text-cream/90">
                     <a
                       href="https://instagram.com/augustolisboapt"

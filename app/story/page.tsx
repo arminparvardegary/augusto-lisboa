@@ -17,21 +17,11 @@ export default function StoryPage() {
     <>
       <section className="relative bg-cream pt-40 md:pt-56 pb-24 md:pb-32">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <div className="label-micro text-espresso/70">Our Story</div>
-              <div className="label-micro text-espresso/70 mt-3">
-                Belém · Since 2021
-              </div>
-            </div>
-            <div className="md:col-span-8">
-              <MaskedHeading
-                text="A small family, a sunlit room, and the slow start of a neighbourhood."
-                as="h1"
-                className="text-5xl md:text-7xl lg:text-8xl text-espresso"
-              />
-            </div>
-          </div>
+          <MaskedHeading
+            text="A small family, a sunlit room, and the slow start of a neighbourhood."
+            as="h1"
+            className="text-5xl md:text-7xl lg:text-8xl text-espresso"
+          />
         </div>
       </section>
 
@@ -54,7 +44,6 @@ export default function StoryPage() {
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
           <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-4 md:col-start-2">
-              <div className="label-micro text-espresso/65 mb-6">Chapter One</div>
               <MaskedHeading
                 text="The Room"
                 as="h2"
@@ -94,7 +83,6 @@ export default function StoryPage() {
               />
             </div>
             <div className="md:col-span-4 md:col-start-9 md:pt-32">
-              <div className="label-micro text-espresso/65 mb-6">Chapter Two</div>
               <MaskedHeading
                 text="The People"
                 as="h2"
@@ -133,7 +121,6 @@ export default function StoryPage() {
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
           <div className="grid grid-cols-1 gap-16 md:grid-cols-12 md:gap-20">
             <div className="md:col-span-5">
-              <div className="label-micro text-espresso/65 mb-6">Chapter Three</div>
               <MaskedHeading
                 text="The Way We Cook"
                 as="h2"
@@ -179,7 +166,7 @@ export default function StoryPage() {
               the coffee lasts as long as the conversation.
               <em className="script-accent text-ochre not-italic">"</em>
             </p>
-            <footer className="mt-10 label-micro text-cream/60">
+            <footer className="mt-10 text-xs tracking-[0.2em] uppercase text-cream/60">
               — The Augusto Family
             </footer>
           </blockquote>

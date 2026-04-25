@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 
 export type ProjectCardProps = {
   title: string;
-  eyebrow: string;
   href: string;
   image: string;
   arched?: boolean;
@@ -14,7 +13,6 @@ export type ProjectCardProps = {
 
 export default function ProjectCard({
   title,
-  eyebrow,
   href,
   image,
   arched = true,
@@ -38,12 +36,9 @@ export default function ProjectCard({
         <div className="absolute inset-0 bg-gradient-to-b from-ink/0 via-ink/0 to-ink/45 opacity-80" />
       </motion.div>
       <div className="mt-5 flex items-baseline justify-between gap-4">
-        <div>
-          <div className="label-micro text-espresso/60 mb-1">{eyebrow}</div>
-          <h3 className="heading-display text-espresso text-2xl md:text-3xl">
-            {title}
-          </h3>
-        </div>
+        <h3 className="heading-display text-espresso text-2xl md:text-3xl">
+          {title}
+        </h3>
         <span
           aria-hidden
           className="text-ochre text-xl transition-transform duration-500 group-hover:translate-x-1"

@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import MaskedHeading from "@/components/MaskedHeading";
 import ScrollReveal from "@/components/ScrollReveal";
 import ArchedImage from "@/components/ArchedImage";
+import Link from "next/link";
 import { images } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Visit",
   description:
-    "Find Augusto Lisboa on Rua de Belém. Open daily 8:00 — 18:00. Walk-ins welcome, larger groups by message.",
+    "Find Augusto Lisboa on Rua de Belém. Open daily 8:00 — 18:00. Walk-ins welcome.",
 };
 
 const hours = [
@@ -36,19 +37,11 @@ export default function VisitPage() {
     <>
       <section className="relative bg-cream pt-40 md:pt-56 pb-24 md:pb-32">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <div className="label-micro text-espresso/70">Visit</div>
-              <div className="label-micro text-espresso/70 mt-3">Belém · Lisboa</div>
-            </div>
-            <div className="md:col-span-8">
-              <MaskedHeading
-                text="Come sit. The kettle is already warm."
-                as="h1"
-                className="text-5xl md:text-7xl lg:text-8xl text-espresso"
-              />
-            </div>
-          </div>
+          <MaskedHeading
+            text="Come sit. The kettle is already warm."
+            as="h1"
+            className="text-5xl md:text-7xl lg:text-8xl text-espresso"
+          />
         </div>
       </section>
 
@@ -68,7 +61,6 @@ export default function VisitPage() {
             <div className="md:col-span-7 md:pt-12">
               <ScrollReveal className="space-y-12">
                 <div>
-                  <div className="label-micro text-espresso/65 mb-4">Address</div>
                   <p className="heading-display text-espresso text-3xl md:text-4xl leading-snug">
                     Rua de Belém
                     <br />
@@ -80,14 +72,14 @@ export default function VisitPage() {
                     href="https://maps.google.com/?q=Rua+de+Belém+Lisboa"
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="mt-6 inline-flex items-center gap-2 label-micro text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
+                    className="mt-6 inline-flex items-center gap-2 text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
                   >
                     Open in Maps <span className="text-ochre">→</span>
                   </a>
                 </div>
 
                 <div>
-                  <div className="label-micro text-espresso/65 mb-4">Hours</div>
+                  <h2 className="heading-display text-espresso text-2xl mb-4">Hours</h2>
                   <ul className="space-y-3">
                     {hours.map((h) => (
                       <li
@@ -104,7 +96,7 @@ export default function VisitPage() {
                 </div>
 
                 <div>
-                  <div className="label-micro text-espresso/65 mb-4">Reach Us</div>
+                  <h2 className="heading-display text-espresso text-2xl mb-4">Reach Us</h2>
                   <ul className="space-y-2 text-espresso/85">
                     <li>
                       <a
@@ -134,6 +126,15 @@ export default function VisitPage() {
                     </li>
                   </ul>
                 </div>
+
+                <div>
+                  <Link
+                    href="/reserve"
+                    className="inline-flex items-center gap-2 text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
+                  >
+                    Reserve a table <span className="text-ochre">→</span>
+                  </Link>
+                </div>
               </ScrollReveal>
             </div>
           </div>
@@ -142,15 +143,10 @@ export default function VisitPage() {
 
       <section className="bg-warmwhite py-32 md:py-40">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
-          <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <div className="label-micro text-espresso/65">When to come</div>
-            </div>
-            <div className="md:col-span-8">
-              <h2 className="heading-display text-espresso text-3xl md:text-5xl text-balance">
-                Three quiet windows in the day.
-              </h2>
-            </div>
+          <div className="mb-16">
+            <h2 className="heading-display text-espresso text-3xl md:text-5xl text-balance max-w-3xl">
+              Three quiet windows in the day.
+            </h2>
           </div>
 
           <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
@@ -160,9 +156,6 @@ export default function VisitPage() {
                 delay={i * 0.1}
                 className="border-t border-espresso/20 pt-6"
               >
-                <div className="label-micro text-espresso/65 mb-4">
-                  0{i + 1}
-                </div>
                 <h3 className="heading-display text-espresso text-3xl md:text-4xl mb-4">
                   {m.label}
                 </h3>
@@ -173,27 +166,37 @@ export default function VisitPage() {
         </div>
       </section>
 
-      <section className="bg-cream pb-32 md:pb-48">
+      <section className="bg-cream pb-32 md:pb-40">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
-          <div className="relative w-full aspect-[16/9] arched bg-sand overflow-hidden">
-            <iframe
-              title="Augusto Lisboa map"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-9.2090%2C38.6960%2C-9.1880%2C38.7060&amp;layer=mapnik&amp;marker=38.6975%2C-9.2030"
-              className="absolute inset-0 h-full w-full"
-              loading="lazy"
-              style={{ filter: "sepia(0.25) saturate(0.85) hue-rotate(-10deg)" }}
-            />
-          </div>
-          <div className="mt-6 flex justify-between label-micro text-espresso/55">
-            <span>Belém · Rua de Belém</span>
-            <a
-              href="https://maps.google.com/?q=Rua+de+Belém+Lisboa"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="hover:text-ochre transition-colors"
-            >
-              Get directions →
-            </a>
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-center">
+            <div className="md:col-span-5">
+              <h2 className="heading-display text-espresso text-3xl md:text-4xl text-balance">
+                Find us under the arches.
+              </h2>
+              <p className="mt-6 text-espresso/80 leading-relaxed max-w-md">
+                A two-minute walk from Mosteiro dos Jerónimos. Tram 15 stops at
+                the corner.
+              </p>
+              <a
+                href="https://maps.google.com/?q=Rua+de+Belém+Lisboa"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="mt-6 inline-flex items-center gap-2 text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
+              >
+                Get directions <span className="text-ochre">→</span>
+              </a>
+            </div>
+            <div className="md:col-span-7">
+              <div className="relative w-full aspect-[4/3] md:aspect-[5/4] arched bg-sand overflow-hidden border border-espresso/10">
+                <iframe
+                  title="Augusto Lisboa map"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=-9.2090%2C38.6960%2C-9.1880%2C38.7060&amp;layer=mapnik&amp;marker=38.6975%2C-9.2030"
+                  className="absolute inset-0 h-full w-full"
+                  loading="lazy"
+                  style={{ filter: "sepia(0.25) saturate(0.85) hue-rotate(-10deg)" }}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
