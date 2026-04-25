@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Augusto Lisboa
 
-## Getting Started
+A luxury, scroll-driven marketing site for **Augusto Lisboa** — specialty coffee and brunch on Rua de Belém, Lisbon.
 
-First, run the development server:
+> **Better Food, Better Mood.**
+
+## Stack
+
+- Next.js 16 (App Router) · TypeScript · Tailwind CSS v4
+- Framer Motion · GSAP · Lenis (smooth inertia scroll)
+- Embla Carousel · `next/font` · `next/image`
+- Vercel deployment
+
+## Motion DNA
+
+The site borrows the editorial pacing of [oliviaharperhomes.com](https://oliviaharperhomes.com): a Lenis-powered smooth scroll, parallax hero, masked text reveals, an arched-image vocabulary, a pinned horizontal carousel, a marquee band and a luxury preloader.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Pages
 
-To learn more about Next.js, take a look at the following resources:
+- `/` — Homepage (parallax hero, intro, horizontal-scroll signature menu, four-card menu preview, press, visit block)
+- `/menu` — Full menu, four sections: Coffee, Brunch, Toasts, Pastry
+- `/story` — Three-chapter long-form scroll narrative
+- `/visit` — Address, hours, map, when-to-come moments
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Accessibility
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`prefers-reduced-motion` disables Lenis and dampens animations. All images carry alt text; the custom cursor is suppressed on coarse pointers.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+© Augusto Lisboa · Belém · Est. 2021
