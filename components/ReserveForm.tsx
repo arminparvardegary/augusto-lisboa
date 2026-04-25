@@ -2,12 +2,16 @@
 
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { site } from "@/lib/content";
 
 const partySizes = ["2", "3", "4", "5", "6", "7+"];
 const times = [
-  "8:00", "8:30", "9:00", "9:30", "10:00", "10:30",
-  "11:00", "11:30", "12:00", "12:30", "13:00", "13:30",
-  "14:00", "14:30", "15:00", "15:30", "16:00", "17:00",
+  "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
+  "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
+];
+const weekendTimes = [
+  "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
+  "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00",
 ];
 
 export default function ReserveForm() {
@@ -15,6 +19,25 @@ export default function ReserveForm() {
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    const subject = `Reservation request — ${data.get("name")} (${data.get("party")} on ${data.get("date")})`;
+    const body = [
+      `Name: ${data.get("name")}`,
+      `Email: ${data.get("email")}`,
+      `Phone: ${data.get("phone") || "—"}`,
+      "",
+      `Date: ${data.get("date")}`,
+      `Time: ${data.get("time")}`,
+      `Party: ${data.get("party")}`,
+      "",
+      `Notes: ${data.get("notes") || "—"}`,
+    ].join("\n");
+
+    const mailto = `mailto:${site.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailto;
     setSubmitted(true);
   }
 
@@ -36,19 +59,36 @@ export default function ReserveForm() {
           className="border border-espresso/15 bg-warmwhite p-10 md:p-14"
         >
           <h2 className="heading-display text-espresso text-3xl md:text-5xl text-balance">
-            Thank you. We'll write back the same{" "}
-            <em className="script-accent text-ochre not-italic">day</em>.
+            Your email is on its{" "}
+            <em className="script-accent text-ochre not-italic">way</em>.
           </h2>
           <p className="mt-6 text-espresso/80 leading-relaxed max-w-md">
-            If you don't hear from us within a few hours, give us a ring on
-            +351 21 000 0000 — emails sometimes get lost between croissants.
+            We've opened your mail app with the request pre-written — please
+            send it and we'll write back the same day. If nothing opened, drop
+            us a line at{" "}
+            <a
+              href={`mailto:${site.contact.email}`}
+              className="hover:text-ochre transition-colors border-b border-ochre"
+            >
+              {site.contact.email}
+            </a>{" "}
+            or DM us on{" "}
+            <a
+              href={site.brand.instagramUrl}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="hover:text-ochre transition-colors border-b border-ochre"
+            >
+              Instagram
+            </a>
+            .
           </p>
           <button
             type="button"
             onClick={() => setSubmitted(false)}
             className="mt-10 inline-flex items-center gap-2 text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
           >
-            Send another →
+            Edit and resend →
           </button>
         </motion.div>
       ) : (
@@ -102,26 +142,32 @@ export default function ReserveForm() {
                 min={today}
                 className={inputClass}
               />
+              <p className="mt-2 text-espresso/45 text-xs">Closed Wednesdays.</p>
             </div>
             <div>
               <label htmlFor="time" className={fieldLabel}>
                 Time
               </label>
-              <select id="time" name="time" required className={inputClass}>
-                <option value="">Choose</option>
-                {times.map((t) => (
-                  <option key={t} value={t}>
-                    {t}
-                  </option>
-                ))}
+              <select id="time" name="time" required className={inputClass} defaultValue="">
+                <option value="" disabled>Choose</option>
+                <optgroup label="Weekdays (10:00 – 15:30)">
+                  {times.map((t) => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </optgroup>
+                <optgroup label="Weekends (09:30 – 16:00)">
+                  {weekendTimes.map((t) => (
+                    <option key={`w-${t}`} value={t}>{t}</option>
+                  ))}
+                </optgroup>
               </select>
             </div>
             <div>
               <label htmlFor="party" className={fieldLabel}>
                 Party Size
               </label>
-              <select id="party" name="party" required className={inputClass}>
-                <option value="">Choose</option>
+              <select id="party" name="party" required className={inputClass} defaultValue="">
+                <option value="" disabled>Choose</option>
                 {partySizes.map((p) => (
                   <option key={p} value={p}>
                     {p}
@@ -173,7 +219,7 @@ export default function ReserveForm() {
             <p className="mt-6 text-espresso/55 text-sm">
               Or message us on{" "}
               <a
-                href="https://instagram.com/augustolisboapt"
+                href={site.brand.instagramUrl}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="hover:text-ochre transition-colors border-b border-espresso/40 hover:border-ochre"

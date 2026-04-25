@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import MarqueeBand from "./MarqueeBand";
+import { site } from "@/lib/content";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -15,7 +16,7 @@ export default function Footer() {
           "Belém · Lisboa",
           "Since 2021",
           "Better Food, Better Mood",
-          "@augustolisboapt",
+          site.brand.instagramHandle,
         ]}
         tone="dark"
       />
@@ -45,16 +46,14 @@ export default function Footer() {
           <div className="md:col-span-3">
             <h3 className="heading-display text-cream/80 text-2xl mb-6">Visit</h3>
             <p className="leading-relaxed text-cream/85">
-              Rua de Belém
+              {site.contact.address.street}
               <br />
-              1300-085 Lisboa
+              {site.contact.address.postal} {site.contact.address.city}
               <br />
-              Portugal
+              {site.contact.address.country}
             </p>
             <p className="mt-6 leading-relaxed text-cream/85">
-              Open daily
-              <br />
-              8:00 — 18:00
+              {site.hoursShort}
             </p>
           </div>
 
@@ -63,30 +62,32 @@ export default function Footer() {
             <ul className="space-y-3 text-cream/85">
               <li>
                 <a
-                  href="https://instagram.com/augustolisboapt"
+                  href={site.brand.instagramUrl}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="hover:text-ochre transition-colors"
                 >
-                  @augustolisboapt
+                  {site.brand.instagramHandle}
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:hello@augustolisboa.com"
+                  href={`mailto:${site.contact.email}`}
                   className="hover:text-ochre transition-colors"
                 >
-                  hello@augustolisboa.com
+                  {site.contact.email}
                 </a>
               </li>
-              <li>
-                <a
-                  href="tel:+351210000000"
-                  className="hover:text-ochre transition-colors"
-                >
-                  +351 21 000 0000
-                </a>
-              </li>
+              {site.contact.phone && (
+                <li>
+                  <a
+                    href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
+                    className="hover:text-ochre transition-colors"
+                  >
+                    {site.contact.phone}
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>

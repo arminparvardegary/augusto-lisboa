@@ -4,31 +4,26 @@ import ScrollReveal from "@/components/ScrollReveal";
 import ArchedImage from "@/components/ArchedImage";
 import Link from "next/link";
 import { images } from "@/lib/images";
+import { site } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Visit",
   description:
-    "Find Augusto Lisboa on Rua de Belém. Open daily 8:00 — 18:00. Walk-ins welcome.",
+    "Find Augusto Lisboa on Rua de Belém. Mon–Fri 10:00–15:30, Weekends 09:30–16:00, Closed Wednesdays.",
 };
-
-const hours = [
-  { day: "Monday — Friday", time: "8:00 — 18:00" },
-  { day: "Saturday", time: "9:00 — 18:00" },
-  { day: "Sunday", time: "9:00 — 17:00" },
-];
 
 const moments = [
   {
-    label: "Mornings",
-    desc: "Quiet from 8 to 10 — the best time for a long table and a good book.",
+    label: "Late mornings",
+    desc: "Quiet from 10 to 11 — best for a long table and a slow flat white.",
   },
   {
     label: "Brunch",
-    desc: "Busiest from 11 to 14, especially on weekends. Walk-ins welcome.",
+    desc: "Busiest from 12 to 14, especially on weekends. Walk-ins welcome.",
   },
   {
     label: "Afternoons",
-    desc: "After 15:00 the room thins out — pastries, filter coffee, slow conversation.",
+    desc: "After 15:00 the room thins out — pastel de nata, filter coffee, slow conversation.",
   },
 ];
 
@@ -62,14 +57,14 @@ export default function VisitPage() {
               <ScrollReveal className="space-y-12">
                 <div>
                   <p className="heading-display text-espresso text-3xl md:text-4xl leading-snug">
-                    Rua de Belém
+                    {site.contact.address.street}
                     <br />
-                    1300-085 Lisboa
+                    {site.contact.address.postal} {site.contact.address.city}
                     <br />
-                    Portugal
+                    {site.contact.address.country}
                   </p>
                   <a
-                    href="https://maps.google.com/?q=Rua+de+Belém+Lisboa"
+                    href={site.contact.mapsUrl}
                     target="_blank"
                     rel="noreferrer noopener"
                     className="mt-6 inline-flex items-center gap-2 text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
@@ -81,13 +76,13 @@ export default function VisitPage() {
                 <div>
                   <h2 className="heading-display text-espresso text-2xl mb-4">Hours</h2>
                   <ul className="space-y-3">
-                    {hours.map((h) => (
+                    {site.hours.map((h) => (
                       <li
-                        key={h.day}
+                        key={h.days}
                         className="flex justify-between gap-4 text-espresso/85 text-base md:text-lg"
                       >
-                        <span>{h.day}</span>
-                        <span className="heading-display text-espresso">
+                        <span>{h.days}</span>
+                        <span className={`heading-display ${h.time === "Closed" ? "text-espresso/50 italic" : "text-espresso"}`}>
                           {h.time}
                         </span>
                       </li>
@@ -100,30 +95,32 @@ export default function VisitPage() {
                   <ul className="space-y-2 text-espresso/85">
                     <li>
                       <a
-                        href="https://instagram.com/augustolisboapt"
+                        href={site.brand.instagramUrl}
                         target="_blank"
                         rel="noreferrer noopener"
                         className="hover:text-ochre transition-colors"
                       >
-                        @augustolisboapt
+                        {site.brand.instagramHandle}
                       </a>
                     </li>
                     <li>
                       <a
-                        href="mailto:hello@augustolisboa.com"
+                        href={`mailto:${site.contact.email}`}
                         className="hover:text-ochre transition-colors"
                       >
-                        hello@augustolisboa.com
+                        {site.contact.email}
                       </a>
                     </li>
-                    <li>
-                      <a
-                        href="tel:+351210000000"
-                        className="hover:text-ochre transition-colors"
-                      >
-                        +351 21 000 0000
-                      </a>
-                    </li>
+                    {site.contact.phone && (
+                      <li>
+                        <a
+                          href={`tel:${site.contact.phone.replace(/\s+/g, "")}`}
+                          className="hover:text-ochre transition-colors"
+                        >
+                          {site.contact.phone}
+                        </a>
+                      </li>
+                    )}
                   </ul>
                 </div>
 
@@ -174,11 +171,11 @@ export default function VisitPage() {
                 Find us under the arches.
               </h2>
               <p className="mt-6 text-espresso/80 leading-relaxed max-w-md">
-                A two-minute walk from Mosteiro dos Jerónimos. Tram 15 stops at
-                the corner.
+                A short walk from Mosteiro dos Jerónimos. Tram 15 stops at the
+                corner.
               </p>
               <a
-                href="https://maps.google.com/?q=Rua+de+Belém+Lisboa"
+                href={site.contact.mapsUrl}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="mt-6 inline-flex items-center gap-2 text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
@@ -189,11 +186,12 @@ export default function VisitPage() {
             <div className="md:col-span-7">
               <div className="relative w-full aspect-[4/3] md:aspect-[5/4] arched bg-sand overflow-hidden border border-espresso/10">
                 <iframe
-                  title="Augusto Lisboa map"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=-9.2090%2C38.6960%2C-9.1880%2C38.7060&amp;layer=mapnik&amp;marker=38.6975%2C-9.2030"
+                  title="Augusto Lisboa on Google Maps"
+                  src={site.contact.mapsEmbedSrc}
                   className="absolute inset-0 h-full w-full"
                   loading="lazy"
-                  style={{ filter: "sepia(0.25) saturate(0.85) hue-rotate(-10deg)" }}
+                  referrerPolicy="no-referrer-when-downgrade"
+                  style={{ filter: "sepia(0.2) saturate(0.9)", border: 0 }}
                 />
               </div>
             </div>

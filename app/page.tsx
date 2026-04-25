@@ -9,19 +9,26 @@ import StickyBadge from "@/components/StickyBadge";
 import Image from "next/image";
 import Link from "next/link";
 import { images } from "@/lib/images";
+import { site } from "@/lib/content";
 
 export default function HomePage() {
+  const cards = site.signatureCards.map((c) => ({
+    title: c.title,
+    subtitle: c.subtitle,
+    image: images[c.imageKey],
+  }));
+
   return (
     <>
       <StickyBadge />
 
       <HeroParallax
         image={images.heroInterior}
-        imageAlt="Sunlit arches and warm interior at Augusto Lisboa, Belém"
-        headline="A better"
-        scriptWord="morning"
-        tail="in Belém."
-        cta={{ href: "#story", label: "Begin the day" }}
+        imageAlt="Sunlit interior at Augusto Lisboa, Belém"
+        headline={site.hero.headline}
+        scriptWord={site.hero.scriptWord}
+        tail={site.hero.tail}
+        cta={{ href: "#story", label: site.hero.cta }}
       />
 
       <section id="story" className="bg-cream py-32 md:py-48">
@@ -29,16 +36,13 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
             <div className="md:col-span-12">
               <MaskedHeading
-                text="Augusto is a sunlit room on Rua de Belém — slow brunches, careful coffee, and a kitchen that treats every plate as a small, generous gesture."
+                text={site.story.heading}
                 as="h2"
                 className="text-4xl md:text-6xl lg:text-7xl text-espresso leading-[1.05]"
               />
               <ScrollReveal delay={0.4} className="mt-12 max-w-2xl">
                 <p className="text-espresso/85 text-lg md:text-xl leading-relaxed">
-                  Founded by a small family of cooks, baristas and gardeners, we
-                  built Augusto as a place to slow down and start over — a long
-                  table under the arches, a flat white made with intention, and
-                  the soft hum of a neighbourhood waking up.
+                  {site.story.intro}
                 </p>
                 <Link
                   href="/story"
@@ -57,7 +61,7 @@ export default function HomePage() {
           <div className="relative w-full aspect-[16/10] arched bg-sand overflow-hidden">
             <Image
               src={images.archesInterior}
-              alt="Café interior with warm arches and morning light"
+              alt="Café interior at Augusto Lisboa"
               fill
               sizes="100vw"
               className="object-cover"
@@ -68,13 +72,7 @@ export default function HomePage() {
 
       <HorizontalScroll
         heading="A short menu, served with intention."
-        cards={[
-          { title: "Flat White", subtitle: "Coffee", image: images.coffeePour },
-          { title: "Avocado Toast", subtitle: "Brunch", image: images.toast },
-          { title: "Matcha Latte", subtitle: "Drinks", image: images.matchaWhisk },
-          { title: "Croissant Beurre", subtitle: "Pastry", image: images.croissant },
-          { title: "Garden Bowl", subtitle: "Plates", image: images.brunchOverhead },
-        ]}
+        cards={cards}
       />
 
       <section className="bg-cream py-32 md:py-48">
@@ -98,7 +96,7 @@ export default function HomePage() {
             <div className="md:col-span-7">
               <ArchedImage
                 src={images.interiorWide}
-                alt="Wide interior of Augusto Lisboa with terracotta floors"
+                alt="Wide interior of Augusto Lisboa"
                 aspect="aspect-[4/5]"
                 sizes="(min-width: 768px) 60vw, 100vw"
               />
@@ -130,17 +128,17 @@ export default function HomePage() {
             <ProjectCard
               title="All Day"
               href="/menu#brunch"
-              image={images.flatlayBrunch}
+              image={images.brunchOverhead}
             />
             <ProjectCard
               title="Open-Faced"
               href="/menu#toasts"
-              image={images.toast}
+              image={images.avocadoToast}
             />
             <ProjectCard
               title="From the Oven"
               href="/menu#pastry"
-              image={images.pastries}
+              image={images.croissant}
             />
           </div>
 
@@ -158,16 +156,19 @@ export default function HomePage() {
       <section className="bg-cream border-y border-espresso/10">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-16">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4 items-center">
-            {["Tripadvisor 2025", "Time Out Lisboa", "Conde Nast", "Monocle"].map(
-              (name) => (
-                <ScrollReveal
-                  key={name}
-                  className="heading-display text-espresso/70 text-xl md:text-2xl text-center"
-                >
-                  <span>{name}</span>
-                </ScrollReveal>
-              ),
-            )}
+            {site.press.map((p) => (
+              <ScrollReveal
+                key={p.name}
+                className="text-center"
+              >
+                <div className="heading-display text-espresso/80 text-xl md:text-2xl">
+                  {p.name}
+                </div>
+                <div className="text-espresso/55 text-xs mt-1 tracking-[0.15em] uppercase">
+                  {p.note}
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
@@ -177,7 +178,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-16 md:grid-cols-12 md:gap-20 items-end">
             <div className="md:col-span-7">
               <MaskedHeading
-                text="Open daily from eight to six. The kettle is already warm."
+                text="Slow mornings, sunlit rooms, considered plates."
                 as="h2"
                 className="text-4xl md:text-6xl lg:text-7xl text-cream"
               />
@@ -200,34 +201,32 @@ export default function HomePage() {
               <ScrollReveal className="space-y-8">
                 <div>
                   <p className="leading-relaxed text-cream/90">
-                    Rua de Belém
+                    {site.contact.address.street}
                     <br />
-                    1300-085 Lisboa, Portugal
+                    {site.contact.address.postal} {site.contact.address.city}, {site.contact.address.country}
                   </p>
                 </div>
                 <div>
                   <p className="leading-relaxed text-cream/90">
-                    Monday — Sunday
-                    <br />
-                    8:00 — 18:00
+                    {site.hoursShort}
                   </p>
                 </div>
                 <div>
                   <p className="leading-relaxed text-cream/90">
                     <a
-                      href="https://instagram.com/augustolisboapt"
+                      href={site.brand.instagramUrl}
                       target="_blank"
                       rel="noreferrer noopener"
                       className="hover:text-ochre transition-colors"
                     >
-                      @augustolisboapt
+                      {site.brand.instagramHandle}
                     </a>
                     <br />
                     <a
-                      href="mailto:hello@augustolisboa.com"
+                      href={`mailto:${site.contact.email}`}
                       className="hover:text-ochre transition-colors"
                     >
-                      hello@augustolisboa.com
+                      {site.contact.email}
                     </a>
                   </p>
                 </div>
