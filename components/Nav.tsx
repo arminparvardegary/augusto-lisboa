@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/cn";
@@ -52,12 +53,17 @@ export default function Nav() {
         <div className="relative mx-auto flex max-w-[1600px] items-center justify-between px-6 md:px-12">
           <Link
             href="/"
-            className="flex items-baseline gap-2"
+            className="flex items-center"
             aria-label="Augusto Lisboa home"
           >
-            <span className="script-accent text-espresso text-2xl md:text-3xl leading-none">
-              Augusto
-            </span>
+            <Image
+              src="/images/logo.png"
+              alt="Augusto Lisboa"
+              width={300}
+              height={200}
+              priority
+              className="h-9 w-auto md:h-11"
+            />
           </Link>
 
           <nav className="hidden md:flex items-center gap-10">
@@ -95,7 +101,13 @@ export default function Nav() {
             className="fixed inset-0 z-[60] bg-espresso text-cream md:hidden"
           >
             <div className="flex items-center justify-between px-6 py-6">
-              <span className="script-accent text-3xl">Augusto</span>
+              <Image
+                src="/images/logo.png"
+                alt="Augusto Lisboa"
+                width={300}
+                height={200}
+                className="h-10 w-auto invert brightness-0"
+              />
               <button
                 type="button"
                 onClick={() => setOpen(false)}

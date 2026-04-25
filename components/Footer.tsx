@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import MarqueeBand from "./MarqueeBand";
 
 export default function Footer() {
@@ -20,6 +21,19 @@ export default function Footer() {
       />
 
       <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-24 md:py-32">
+        <Link
+          href="/"
+          aria-label="Augusto Lisboa home"
+          className="inline-block mb-16 md:mb-20"
+        >
+          <Image
+            src="/images/logo.png"
+            alt="Augusto Lisboa"
+            width={400}
+            height={266}
+            className="h-12 w-auto md:h-14 invert brightness-0"
+          />
+        </Link>
         <div className="grid grid-cols-1 gap-16 md:grid-cols-12">
           <div className="md:col-span-6">
             <h2 className="heading-display text-5xl md:text-7xl text-balance">

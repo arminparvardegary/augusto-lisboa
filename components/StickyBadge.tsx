@@ -32,7 +32,7 @@ export default function StickyBadge() {
           </text>
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="script-accent text-espresso text-2xl">A</div>
+          <div className="h-1.5 w-1.5 rounded-full bg-ochre" />
         </div>
       </motion.div>
     </div>

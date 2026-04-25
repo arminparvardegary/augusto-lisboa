@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Preloader() {
@@ -44,12 +45,16 @@ export default function Preloader() {
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1, transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] } }}
-            className="flex flex-col items-center gap-6"
+            className="flex flex-col items-center gap-8"
           >
-            <div className="text-center">
-              <div className="script-accent text-espresso text-5xl md:text-6xl">Augusto</div>
-              <div className="text-xs tracking-[0.2em] uppercase text-espresso/70 mt-2">Lisboa · Belém</div>
-            </div>
+            <Image
+              src="/images/logo.png"
+              alt="Augusto Lisboa"
+              width={600}
+              height={400}
+              priority
+              className="h-20 w-auto md:h-24"
+            />
             <div className="relative h-px w-48 overflow-hidden bg-espresso/15">
               <motion.div
                 className="absolute inset-y-0 left-0 bg-ochre"
