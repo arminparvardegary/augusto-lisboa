@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #dcb2a5;
+  --color-cream: #f5efe6;
   --color-sand: #e8d9c4;
   --color-blush: #e8c5b8;
-  --color-ochre: #d4a24c;
+  --color-ochre: #dcb2a5;
   --color-brass: #b8894a;
   --color-sage: #7a8a5c;
   --color-espresso: #3d2b1f;
