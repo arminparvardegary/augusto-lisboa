@@ -38,7 +38,7 @@ export default function HeroParallax({
     >
       <motion.div
         style={{ y: imageY, scale: imageScale }}
-        className="absolute inset-0"
+        className="absolute inset-0 brand-tone"
       >
         <Image
           src={image}

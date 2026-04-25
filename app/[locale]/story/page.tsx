@@ -41,7 +41,7 @@ export default async function StoryPage({
 
       <section className="bg-cream pb-32 md:pb-48">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
-          <div className="relative w-full aspect-[16/9] arched bg-sand overflow-hidden">
+          <div className="relative w-full aspect-[16/9] arched bg-sand overflow-hidden brand-tone">
             <Image
               src={images.exterior}
               alt="Augusto Lisboa exterior"

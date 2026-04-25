@@ -134,4 +134,9 @@ body {
   .text-pretty {
     text-wrap: pretty;
   }
+
+  /* Unifies mismatched stock imagery into one warm, editorial tone. */
+  .brand-tone img {
+    filter: saturate(0.92) brightness(1.02) sepia(0.04) contrast(0.98);
+  }
 }

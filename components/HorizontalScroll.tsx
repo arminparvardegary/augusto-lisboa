@@ -51,7 +51,7 @@ export default function HorizontalScroll({
               key={card.title}
               className="relative flex h-[60vh] w-[80vw] shrink-0 flex-col md:h-[68vh] md:w-[42vw]"
             >
-              <div className="relative h-full w-full overflow-hidden bg-sand">
+              <div className="relative h-full w-full overflow-hidden bg-sand brand-tone">
                 <Image
                   src={card.image}
                   alt={card.title}

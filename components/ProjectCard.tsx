@@ -24,7 +24,7 @@ export default function ProjectCard({
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, margin: "-60px" }}
         transition={{ duration: 1.1, ease: [0.25, 0.1, 0.25, 1] }}
-        className={`relative overflow-hidden bg-sand aspect-[3/4] ${arched ? "arched" : ""}`}
+        className={`relative overflow-hidden bg-sand aspect-[3/4] brand-tone ${arched ? "arched" : ""}`}
       >
         <Image
           src={image}

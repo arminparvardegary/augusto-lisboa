@@ -25,7 +25,7 @@ export default function ArchedImage({
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 1.3, ease: [0.25, 0.1, 0.25, 1] }}
-      className={cn("relative w-full arched bg-sand", aspect, className)}
+      className={cn("relative w-full arched bg-sand brand-tone", aspect, className)}
     >
       <Image
         src={src}

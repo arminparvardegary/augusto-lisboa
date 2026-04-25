@@ -1,39 +1,62 @@
-// Verified Unsplash imagery — warm, sunlit, café/brunch direction.
-// IMPORTANT: These are placeholders until real Augusto photos are supplied.
-// Each ID has been visually verified to match its label and to NOT contain
-// competitor branding (Stir Coffee Co., BROEI, etc. were removed).
+// Local image manifest — all files live in /public/images/
+// Organised by section so the owner / admin can swap individual assets.
+// When real Augusto photos arrive, replace the file at the same path
+// and the whole site picks it up automatically.
 
-const u = (id: string, w = 1800) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+const hero = "/images/hero";
+const brand = "/images/brand";
+const story = "/images/story";
+const menu = "/images/menu";
+const space = "/images/space";
+const press = "/images/press";
+const visit = "/images/visit";
 
 export const images = {
-  heroInterior: u("photo-1517248135467-4c7edcad34c4", 2400),
-  archesInterior: u("photo-1525610553991-2bede1a236e2", 2000),
-  interiorWide: u("photo-1517248135467-4c7edcad34c4", 2400),
-  cafeCounter: u("photo-1517248135467-4c7edcad34c4", 2200),
-  exterior: u("photo-1559925393-8be0ec4767c8", 2400),
-  archedDoorway: u("photo-1517959105821-eaf2591984ca", 2000),
+  // Hero & brand
+  heroInterior: `${hero}/01-hero-interior.jpg`,
+  heroMobile: `${hero}/02-hero-mobile.jpg`,
+  monogramBg: `${brand}/03-brand-monogram-bg.jpg`,
 
-  flatWhite: u("photo-1497636577773-f1231844b336", 1800),
-  coffeePour: u("photo-1495474472287-4d71bcdd2085", 1800),
-  espresso: u("photo-1485808191679-5f86510681a2", 1600),
-  matchaLatte: u("photo-1515823064-d6e0c04616a7", 1600),
+  // Story
+  storyCounter: `${story}/04-story-counter.jpg`,
+  storyBanquette: `${story}/05-story-banquette.jpg`,
+  storyDetail: `${story}/06-story-detail.jpg`,
 
-  avocadoToast: u("photo-1588137378633-dea1336ce1e2", 1800),
-  croissant: u("photo-1555507036-ab1f4038808a", 1600),
-  pastries: u("photo-1509440159596-0249088772ff", 1800),
-  pastelDeNata: u("photo-1509440159596-0249088772ff", 1600),
+  // Menu
+  flatWhite: `${menu}/07-menu-flatwhite.jpg`,
+  avocadoToast: `${menu}/08-menu-avocadotoast.jpg`,
+  matchaLatte: `${menu}/09-menu-matcha.jpg`,
+  pastelDeNata: `${menu}/10-menu-pastel-de-nata.jpg`,
+  gardenBowl: `${menu}/11-menu-garden-bowl.jpg`,
+  croissant: `${menu}/12-menu-croissant.jpg`,
 
-  brunchOverhead: u("photo-1493770348161-369560ae357d", 2000),
-  flatlayBrunch: u("photo-1533089860892-a7c6f0a88666", 1800),
-  gardenBowl: u("photo-1533089860892-a7c6f0a88666", 1800),
+  // Space
+  spaceBar: `${space}/13-space-bar.jpg`,
+  spaceTable: `${space}/14-space-table.jpg`,
+  spaceArches: `${space}/15-space-arches.jpg`,
+  spaceWindow: `${space}/16-space-window.jpg`,
 
-  detail: u("photo-1493857671505-72967e2e2760", 1600),
-  greenJuice: u("photo-1622597467836-f3285f2131b8", 1600),
-  founder: u("photo-1556909114-f6e7ad7d3136", 1800),
-  table: u("photo-1567521464027-f127ff144326", 2000),
+  // Press
+  pressPortrait: `${press}/17-press-portrait.jpg`,
 
-  // Legacy aliases (still referenced in places — kept for back-compat)
-  toast: u("photo-1588137378633-dea1336ce1e2", 1800),
-  matchaWhisk: u("photo-1515823064-d6e0c04616a7", 1600),
+  // Visit
+  exterior: `${visit}/18-visit-exterior.jpg`,
+
+  // Legacy aliases — keep the old keys pointing at the most sensible new file
+  // so existing page code continues to work until we refactor call sites.
+  archesInterior: `${space}/15-space-arches.jpg`,
+  interiorWide: `${space}/13-space-bar.jpg`,
+  cafeCounter: `${story}/04-story-counter.jpg`,
+  archedDoorway: `${space}/15-space-arches.jpg`,
+  coffeePour: `${menu}/07-menu-flatwhite.jpg`,
+  espresso: `${menu}/07-menu-flatwhite.jpg`,
+  toast: `${menu}/08-menu-avocadotoast.jpg`,
+  matchaWhisk: `${menu}/09-menu-matcha.jpg`,
+  pastries: `${menu}/12-menu-croissant.jpg`,
+  brunchOverhead: `${menu}/11-menu-garden-bowl.jpg`,
+  flatlayBrunch: `${menu}/11-menu-garden-bowl.jpg`,
+  detail: `${story}/06-story-detail.jpg`,
+  greenJuice: `${menu}/11-menu-garden-bowl.jpg`,
+  founder: `${press}/17-press-portrait.jpg`,
+  table: `${space}/14-space-table.jpg`,
 };
