@@ -133,7 +133,7 @@ export default async function StoryPage({
               <div className="grid grid-cols-2 gap-6 md:gap-10">
                 <ArchedImage
                   src={images.greenJuice}
-                  alt="Cold-pressed juice"
+                  alt="Cold pressed juice"
                   aspect="aspect-[3/4]"
                   sizes="(min-width: 768px) 30vw, 50vw"
                 />

@@ -15,8 +15,8 @@
     "cta": "Começar o dia"
   },
   "home": {
-    "storyHeading": "O Augusto é uma sala iluminada na Rua de Belém — brunches sem pressa, café feito com cuidado e uma cozinha que trata cada prato como um pequeno gesto generoso.",
-    "storyBody": "O Augusto começou como uma pequena ideia entre amigos — um cantinho de Belém onde o café é levado a sério, os ovos vêm de uma quinta de confiança e o abacate está sempre no ponto. Quatro anos depois, é a mesma mesa comprida, a mesma playlist e a mesma luz de manhã a entrar pelos arcos.",
+    "storyHeading": "O Augusto é uma sala iluminada na Rua de Belém. Brunches sem pressa, café feito com cuidado e uma cozinha que trata cada prato como um pequeno gesto generoso.",
+    "storyBody": "O Augusto começou como uma pequena ideia entre amigos. Um cantinho de Belém onde o café é levado a sério, os ovos vêm de uma quinta de confiança e o abacate está sempre no ponto. Quatro anos depois, é a mesma mesa comprida, a mesma playlist e a mesma luz de manhã a entrar pelos arcos.",
     "readStory": "Ler a nossa história",
     "horizontalHeading": "Um menu pequeno, servido com intenção.",
     "spaceHeading": "Azulejos, carvalho e uma janela arqueada.",
@@ -35,9 +35,9 @@
   },
   "menuPage": {
     "h1": "Um menu pequeno, escrito a cada estação.",
-    "intro": "Cozinhamos com o que se cultiva por aqui e torramos o café a duas ruas. O menu é curto de propósito — uma pequena selecção, feita com cuidado e servida com calor.",
+    "intro": "Cozinhamos com o que se cultiva por aqui e torramos o café a duas ruas. O menu é curto de propósito. Uma pequena selecção, feita com cuidado e servida com calor.",
     "marquee": ["Café de Especialidade", "Brunch da Estação", "Tostas Abertas", "Pastelaria Caseira"],
-    "askNote": "Restrições, alergias ou uma mesa tranquila para dois —",
+    "askNote": "Restrições, alergias ou uma mesa tranquila para dois,",
     "askNoteItalic": "é só pedir",
     "sections": {
       "coffee": {
@@ -47,7 +47,7 @@
           "macchiato": { "name": "Macchiato", "desc": "Espresso · leite vaporizado" },
           "flatWhite": { "name": "Flat White", "desc": "Ristretto duplo · leite sedoso" },
           "cortado": { "name": "Cortado", "desc": "À moda da casa, Lisboa" },
-          "filter": { "name": "Filtrado", "desc": "V60 — pergunte ao barista" },
+          "filter": { "name": "Filtrado", "desc": "V60, pergunte ao barista" },
           "icedLatte": { "name": "Latte Gelado", "desc": "Cold brew · aveia" }
         }
       },
@@ -55,16 +55,16 @@
         "heading": "Brunch, até a sala se esvaziar.",
         "items": {
           "gardenBowl": { "name": "Garden Bowl", "desc": "Legumes assados · cereais · tahini" },
-          "eggsAugusto": { "name": "Ovos Augusto", "desc": "Pão de massa-mãe · escalfados · manteiga tostada" },
+          "eggsAugusto": { "name": "Ovos Augusto", "desc": "Pão de massa mãe · escalfados · manteiga tostada" },
           "shakshuka": { "name": "Shakshuka", "desc": "Tomate da estação · feta · ervas" },
           "smokedSalmon": { "name": "Salmão Fumado", "desc": "Queijo creme · alcaparras · endro" },
           "pancakes": { "name": "Panquecas", "desc": "Buttermilk · fruta da estação · maple" }
         }
       },
       "toasts": {
-        "heading": "Tostas, em pão de massa-mãe.",
+        "heading": "Tostas, em pão de massa mãe.",
         "items": {
-          "avocado": { "name": "Abacate", "desc": "Limão · piri-piri · azeite" },
+          "avocado": { "name": "Abacate", "desc": "Limão · piri piri · azeite" },
           "ricotta": { "name": "Ricota & Mel", "desc": "Tomilho · flor de sal" },
           "tomate": { "name": "Tomate", "desc": "Da estação · manjericão · alho" },
           "mushroom": { "name": "Cogumelos", "desc": "Manteiga fumada · salsa · ovo" }
@@ -85,19 +85,19 @@
   "story": {
     "h1": "Uma pequena família, uma sala iluminada e o início calmo de um bairro.",
     "chapterOne": "A Sala",
-    "chapterOneA": "Em 2021 encontrámos uma loja de esquina vazia na Rua de Belém — azulejos partidos, um quintal esquecido e uma janela alta que enchia a sala com a luz da tarde.",
-    "chapterOneB": "Salvámos os azulejos. Estucámos as paredes em creme. Construímos um balcão comprido em carvalho com base estriada e assentámos um chão de terracota que aquece com o sol. A sala quase se reconstruiu sozinha — apenas guardámos o que já era bonito.",
+    "chapterOneA": "Em 2021 encontrámos uma loja de esquina vazia na Rua de Belém. Azulejos partidos, um quintal esquecido e uma janela alta que enchia a sala com a luz da tarde.",
+    "chapterOneB": "Salvámos os azulejos. Estucámos as paredes em creme. Construímos um balcão comprido em carvalho com base estriada e assentámos um chão de terracota que aquece com o sol. A sala quase se reconstruiu sozinha. Apenas guardámos o que já era bonito.",
     "chapterTwo": "As Pessoas",
-    "chapterTwoA": "Augusto é família no sentido pequeno — cinco pessoas que aprenderam a cozinhar com avós, que torram o seu próprio café numa garagem a duas ruas e que cuidam de uma pequena horta de ervas no quintal.",
+    "chapterTwoA": "Augusto é família no sentido pequeno. Cinco pessoas que aprenderam a cozinhar com avós, que torram o seu próprio café numa garagem a duas ruas e que cuidam de uma pequena horta de ervas no quintal.",
     "chapterTwoB": "Contratamos devagar. Abrimos todos os dias. Mantemos o menu curto para que a cozinha possa ser generosa.",
     "chapterThree": "Como Cozinhamos",
     "chapterThreeA": "Compramos a três quintas no vale do Tejo, fazemos pão todos os dias e a nossa compota no Verão. O café é torrado às terças. Os ovos vêm de uma família em Sintra que dá nome às galinhas.",
     "marquee": ["Manhãs Calmas", "Salas com Sol", "Pratos Pensados", "Feito com Cuidado"],
-    "quote": "Queríamos um sítio onde o pequeno-almoço durasse o tempo do café, e o café durasse o tempo da conversa.",
-    "quoteSig": "— A Família Augusto"
+    "quote": "Queríamos um sítio onde o pequeno almoço durasse o tempo do café, e o café durasse o tempo da conversa.",
+    "quoteSig": "A Família Augusto"
   },
   "visit": {
-    "h1": "Sente-se. A chaleira já está quente.",
+    "h1": "Venha. A chaleira já está quente.",
     "address": "Morada",
     "hours": "Horário",
     "reachUs": "Contactos",
@@ -107,34 +107,34 @@
     "momentsHeading": "Três janelas calmas no dia.",
     "moments": {
       "morningsLabel": "Manhãs",
-      "morningsDesc": "Calmo das 10 às 11 — ideal para uma mesa comprida e um flat white sem pressa.",
+      "morningsDesc": "Calmo das 10 às 11. Ideal para uma mesa comprida e um flat white sem pressa.",
       "brunchLabel": "Brunch",
-      "brunchDesc": "Mais cheio entre as 12 e as 14, sobretudo aos fins-de-semana. Sem reserva é bem-vindo.",
+      "brunchDesc": "Mais cheio entre as 12 e as 14, sobretudo aos fins de semana. Sem reserva é bem vindo.",
       "afternoonsLabel": "Tardes",
-      "afternoonsDesc": "Depois das 15:00 a sala alivia — pastel de nata, café filtrado, conversa lenta."
+      "afternoonsDesc": "Depois das 15:00 a sala alivia. Pastel de nata, café filtrado, conversa lenta."
     },
-    "findHeading": "Encontre-nos sob os arcos.",
+    "findHeading": "Augusto está sob os arcos.",
     "findBody": "A poucos minutos a pé do Mosteiro dos Jerónimos. O eléctrico 15 pára à esquina.",
     "closed": "Encerrado"
   },
   "reserve": {
-    "h1": "Guarde-nos uma manhã.",
-    "intro": "Reservamos a sua mesa com 3€ por pessoa — esse valor é descontado na sua conta quando chega. Ajuda-nos a manter a cozinha calma e justa para quem espera.",
+    "h1": "Guarde uma manhã.",
+    "intro": "Reservamos a sua mesa com 3€ por pessoa. Esse valor é descontado na sua conta quando chega. Ajuda a manter a cozinha calma e justa para quem espera.",
     "smallerGroups": "Grupos pequenos",
-    "smallerGroupsBody": "Duas a quatro pessoas — encontramos-lhe sempre um cantinho.",
+    "smallerGroupsBody": "Duas a quatro pessoas. Arranjamos sempre um cantinho.",
     "largerTables": "Mesas maiores",
-    "largerTablesBody": "Cinco ou mais — reserve para prepararmos a mesa comprida do fundo.",
+    "largerTablesBody": "Cinco ou mais. Reserve para prepararmos a mesa comprida do fundo.",
     "cancellation": "Cancelamento",
     "cancellationBody": "Reembolso se cancelar com pelo menos 12 horas de antecedência. Basta responder ao email de confirmação.",
     "loading": "A carregar disponibilidade…",
-    "fallback": "A disponibilidade ao vivo ainda não está ligada — envie-nos os seus dados e respondemos no mesmo dia.",
+    "fallback": "A disponibilidade ao vivo ainda não está ligada. Envie os seus dados e respondemos no mesmo dia.",
     "pickDay": "Escolha o dia",
     "pickTime": "Escolha a hora",
-    "fullyBooked": "Esgotado neste dia — quer tentar outro?",
-    "closedNotice": "Estamos encerrados neste dia ({reason}). Escolha outro e guardamos-lhe um cantinho ao sol.",
+    "fullyBooked": "Esgotado neste dia. Quer tentar outro?",
+    "closedNotice": "Estamos encerrados neste dia ({reason}). Escolha outro e guardamos um cantinho ao sol.",
     "name": "O seu nome",
     "namePlaceholder": "Maria Santos",
-    "nameRequired": "Diga-nos o seu nome",
+    "nameRequired": "Diga o seu nome",
     "email": "Email",
     "emailPlaceholder": "maria@email.com",
     "emailRequired": "Para podermos confirmar",
@@ -147,10 +147,10 @@
     "notes": "Algo que devamos saber? (alergias, ocasião…)",
     "notesPlaceholder": "Aniversário, sem lactose, mesa tranquila…",
     "holdFee": "Reserva da mesa",
-    "holdFeeNote": "3€ × {count} {label} — descontado na sua conta no dia. Reembolsado se cancelar com 12h de antecedência.",
+    "holdFeeNote": "3€ × {count} {label}. Descontado na sua conta no dia. Reembolsado se cancelar com 12h de antecedência.",
     "submit": "Reservar a minha mesa",
     "submitting": "A guardar a sua mesa…",
-    "stripeNote": "Os dados do cartão são tratados pelo Stripe — nunca os vemos. Só será cobrado depois de confirmar na página seguinte.",
+    "stripeNote": "Os dados do cartão são tratados pelo Stripe. Nunca os vemos. Só será cobrado depois de confirmar na página seguinte.",
     "errorGeneric": "Algo correu mal. Por favor tente novamente.",
     "errorNetwork": "Erro de rede. Por favor tente novamente."
   },
@@ -164,11 +164,11 @@
     "notes": "Uma nota para a cozinha (opcional)",
     "send": "Enviar pedido",
     "thanksHeading": "O seu email está a caminho.",
-    "thanksBody": "Abrimos o seu cliente de email com o pedido já escrito — envie e respondemos no mesmo dia. Se nada se abriu, escreva-nos para",
-    "or": "ou contacte-nos no",
+    "thanksBody": "Abrimos o seu cliente de email com o pedido já escrito. Envie e respondemos no mesmo dia. Se nada se abriu, escreva para",
+    "or": "ou fale connosco no",
     "instagram": "Instagram",
     "edit": "Editar e reenviar",
-    "messageUs": "Ou contacte-nos no"
+    "messageUs": "Ou fale connosco no"
   },
   "confirmed": {
     "h1": "Até breve, {name}.",
@@ -176,7 +176,7 @@
     "on": "em",
     "at": "às",
     "emailSent": "A confirmação está a caminho de {email}. A cozinha já está animada.",
-    "fallback": "A sua mesa está reservada. Uma confirmação deverá chegar em breve à sua caixa de entrada — se não, escreva-nos para",
+    "fallback": "A sua mesa está reservada. Uma confirmação deverá chegar em breve à sua caixa de entrada. Se não, escreva para",
     "back": "Voltar ao Augusto"
   },
   "footer": {

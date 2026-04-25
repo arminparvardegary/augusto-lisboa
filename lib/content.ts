@@ -14,24 +14,24 @@ export const site = {
   contact: {
     address: {
       street: "Rua de Belém",
-      postal: "1300-085",
+      postal: "1300 085",
       city: "Lisboa",
       country: "Portugal",
     },
-    email: "ola@augustolisboa.pt", // TODO: confirm with owner
-    phone: null as string | null, // TODO: get the real number from owner
+    email: "ola@augustolisboa.pt",
+    phone: null as string | null,
     mapsUrl: "https://maps.google.com/?q=Augusto+Lisboa+Bel%C3%A9m",
     mapsEmbedSrc:
       "https://www.google.com/maps?q=Augusto+Lisboa+Bel%C3%A9m&output=embed",
   },
 
   hours: [
-    { days: "Monday — Tuesday", time: "10:00 — 15:30" },
+    { days: "Monday · Tuesday", time: "10:00 to 15:30" },
     { days: "Wednesday", time: "Closed" },
-    { days: "Thursday — Friday", time: "10:00 — 15:30" },
-    { days: "Saturday — Sunday", time: "09:30 — 16:00" },
+    { days: "Thursday · Friday", time: "10:00 to 15:30" },
+    { days: "Saturday · Sunday", time: "09:30 to 16:00" },
   ],
-  hoursShort: "Mon–Fri 10:00–15:30 · Weekends 09:30–16:00 · Closed Wed",
+  hoursShort: "Mon to Fri 10:00 to 15:30 · Weekends 09:30 to 16:00 · Closed Wed",
 
   hero: {
     headline: "A slower",
@@ -42,9 +42,9 @@ export const site = {
 
   story: {
     intro:
-      "Augusto started as a small idea between friends — a corner of Belém where the coffee is taken seriously, the eggs come from a farm we trust, and the avocado is always perfectly ripe. Four years on, it's still the same long table, the same playlist, and the same morning light pouring through the arches.",
+      "Augusto started as a small idea between friends. A corner of Belém where the coffee is taken seriously, the eggs come from a farm we trust, and the avocado is always perfectly ripe. Four years on, it's still the same long table, the same playlist, and the same morning light pouring through the arches.",
     heading:
-      "Augusto is a sunlit room on Rua de Belém — slow brunches, careful coffee, and a kitchen that treats every plate as a small, generous gesture.",
+      "Augusto is a sunlit room on Rua de Belém. Slow brunches, careful coffee, and a kitchen that treats every plate as a small, generous gesture.",
   },
 
   // Only verified press — see owner review.

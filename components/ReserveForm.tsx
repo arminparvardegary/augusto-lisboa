@@ -24,17 +24,17 @@ export default function ReserveForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
 
-    const subject = `Reservation request — ${data.get("name")} (${data.get("party")} on ${data.get("date")})`;
+    const subject = `Reservation request · ${data.get("name")} (${data.get("party")} on ${data.get("date")})`;
     const body = [
       `Name: ${data.get("name")}`,
       `Email: ${data.get("email")}`,
-      `Phone: ${data.get("phone") || "—"}`,
+      `Phone: ${data.get("phone") || "·"}`,
       "",
       `Date: ${data.get("date")}`,
       `Time: ${data.get("time")}`,
       `Party: ${data.get("party")}`,
       "",
-      `Notes: ${data.get("notes") || "—"}`,
+      `Notes: ${data.get("notes") || "·"}`,
     ].join("\n");
 
     const mailto = `mailto:${site.contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -147,7 +147,7 @@ export default function ReserveForm() {
                 {t("time")}
               </label>
               <select id="time" name="time" required className={inputClass} defaultValue="">
-                <option value="" disabled>—</option>
+                <option value="" disabled>Choose</option>
                 <optgroup label="Weekdays">
                   {times.map((tm) => (
                     <option key={tm} value={tm}>{tm}</option>
@@ -165,7 +165,7 @@ export default function ReserveForm() {
                 {t("party")}
               </label>
               <select id="party" name="party" required className={inputClass} defaultValue="">
-                <option value="" disabled>—</option>
+                <option value="" disabled>Choose</option>
                 {partySizes.map((p) => (
                   <option key={p} value={p}>{p}</option>
                 ))}

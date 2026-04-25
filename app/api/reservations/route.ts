@@ -47,7 +47,7 @@ export async function POST(req: Request) {
 
   if (isWednesday(body.date)) {
     return NextResponse.json(
-      { error: "We're closed on Wednesdays — please pick another day." },
+      { error: "We're closed on Wednesdays. Please pick another day." },
       { status: 400 },
     );
   }
@@ -98,9 +98,9 @@ export async function POST(req: Request) {
               currency: "eur",
               unit_amount: HOLD_FEE_PER_PERSON_CENTS,
               product_data: {
-                name: "Augusto Lisboa — Hold your table",
+                name: "Augusto Lisboa · Hold your table",
                 description:
-                  "€3 per person to hold your table — comes off your bill on the day.",
+                  "€3 per person to hold your table. Comes off your bill on the day.",
               },
             },
             quantity: body.partySize,

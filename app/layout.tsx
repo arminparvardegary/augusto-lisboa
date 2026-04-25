@@ -30,7 +30,7 @@ const siteUrl = "https://augustolisboa.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Augusto Lisboa — Better Food, Better Mood",
+    default: "Augusto Lisboa · Better Food, Better Mood",
     template: "%s · Augusto Lisboa",
   },
   description:
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     "Lisbon brunch",
   ],
   openGraph: {
-    title: "Augusto Lisboa — Better Food, Better Mood",
+    title: "Augusto Lisboa · Better Food, Better Mood",
     description:
       "Specialty coffee and brunch in Belém, Lisbon. Slow mornings, sunlit interiors, considered plates.",
     url: siteUrl,
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Augusto Lisboa — Better Food, Better Mood",
+    title: "Augusto Lisboa · Better Food, Better Mood",
     description:
       "Specialty coffee and brunch in Belém, Lisbon. Slow mornings, sunlit interiors, considered plates.",
   },
@@ -73,7 +73,7 @@ const localBusinessSchema = {
     streetAddress: "Rua de Belém",
     addressLocality: "Lisboa",
     addressRegion: "Belém",
-    postalCode: "1300-085",
+    postalCode: "1300 085",
     addressCountry: "PT",
   },
   openingHoursSpecification: [

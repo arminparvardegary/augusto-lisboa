@@ -73,7 +73,7 @@ export default function ConfirmationEmail({
             {holdFeePaid > 0 && (
               <Text style={{ fontSize: 16, lineHeight: 1.6 }}>
                 Your €{fee} hold comes off your bill when you arrive. Running
-                late? Just reply to this email — we&apos;ll do our best to
+                late? Just reply to this email. We&apos;ll do our best to
                 keep your table.
               </Text>
             )}
@@ -99,7 +99,7 @@ export default function ConfirmationEmail({
             }}
           >
             <Text style={{ margin: "4px 0" }}>
-              Augusto Lisboa · Rua de Belém, 1300-085 Lisboa
+              Augusto Lisboa · Rua de Belém, 1300 085 Lisboa
             </Text>
             <Text style={{ margin: "4px 0" }}>
               @augustolisboapt · augustolisboa.pt

@@ -35,7 +35,7 @@ export async function GET(req: Request) {
         from: FROM_EMAIL,
         to: r.email,
         subject: "Tomorrow at Augusto",
-        text: `Olá ${r.name},\n\nJust a gentle nudge — we'll see you tomorrow at ${r.timeSlot} for ${r.partySize} ${r.partySize === 1 ? "person" : "people"}. The matcha's ready. Reply if anything's changed!\n\nAugusto Lisboa\nRua de Belém, 1300-085 Lisboa\n${format(r.date, "EEEE d MMMM")}`,
+        text: `Olá ${r.name},\n\nJust a gentle nudge. We'll see you tomorrow at ${r.timeSlot} for ${r.partySize} ${r.partySize === 1 ? "person" : "people"}. The matcha's ready. Reply if anything's changed.\n\nAugusto Lisboa\nRua de Belém, 1300 085 Lisboa\n${format(r.date, "EEEE d MMMM")}`,
       });
       sent++;
     } catch (err) {
