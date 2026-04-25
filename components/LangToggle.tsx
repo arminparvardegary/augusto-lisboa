@@ -6,8 +6,10 @@ import { useTransition } from "react";
 
 export default function LangToggle({
   className = "",
+  tone = "dark",
 }: {
   className?: string;
+  tone?: "light" | "dark";
 }) {
   const locale = useLocale();
   const router = useRouter();
@@ -21,6 +23,12 @@ export default function LangToggle({
     });
   }
 
+  const inactive =
+    tone === "light"
+      ? "text-white/65 hover:text-white"
+      : "text-espresso/55 hover:text-espresso";
+  const divider = tone === "light" ? "text-white/40" : "text-espresso/30";
+
   const btn = (target: "pt" | "en") => {
     const active = locale === target;
     return (
@@ -30,8 +38,8 @@ export default function LangToggle({
         disabled={isPending}
         aria-pressed={active}
         aria-label={`Switch to ${target.toUpperCase()}`}
-        className={`text-xs tracking-[0.2em] uppercase transition-colors ${
-          active ? "text-ochre" : "text-espresso/55 hover:text-espresso"
+        className={`text-xs tracking-[0.2em] uppercase transition-colors duration-300 ${
+          active ? "text-ochre" : inactive
         }`}
       >
         {target.toUpperCase()}
@@ -42,7 +50,7 @@ export default function LangToggle({
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       {btn("pt")}
-      <span className="text-espresso/30">·</span>
+      <span className={divider}>·</span>
       {btn("en")}
     </div>
   );

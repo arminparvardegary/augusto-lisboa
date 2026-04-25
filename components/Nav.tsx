@@ -4,14 +4,18 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/routing";
 import { cn } from "@/lib/cn";
 import LangToggle from "./LangToggle";
 
 export default function Nav() {
   const t = useTranslations("nav");
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const isHome = pathname === "/";
+  const overHero = isHome && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -27,8 +31,25 @@ export default function Nav() {
     };
   }, [open]);
 
-  const linkClass =
-    "text-xs tracking-[0.2em] uppercase text-espresso/80 hover:text-ochre transition-colors duration-300";
+  const linkClass = cn(
+    "text-xs tracking-[0.2em] uppercase transition-colors duration-300 hover:text-ochre",
+    overHero ? "text-white/95" : "text-espresso/80",
+  );
+
+  const reserveClass = cn(
+    "text-xs tracking-[0.2em] uppercase border-b border-ochre pb-1 hover:text-ochre transition-colors duration-300",
+    overHero ? "text-white" : "text-espresso",
+  );
+
+  const mobileBtnClass = cn(
+    "text-xs tracking-[0.2em] uppercase transition-colors duration-300",
+    overHero ? "text-white" : "text-espresso",
+  );
+
+  const logoClass = cn(
+    "h-9 w-auto md:h-11 transition-[filter] duration-300",
+    overHero && "invert brightness-0",
+  );
 
   const links = [
     { href: "/menu", key: "menu" as const },
@@ -65,7 +86,7 @@ export default function Nav() {
               width={300}
               height={200}
               priority
-              className="h-9 w-auto md:h-11"
+              className={logoClass}
             />
           </Link>
 
@@ -75,21 +96,18 @@ export default function Nav() {
                 {t(l.key)}
               </Link>
             ))}
-            <Link
-              href="/reserve"
-              className="text-xs tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-1 hover:text-ochre transition-colors"
-            >
+            <Link href="/reserve" className={reserveClass}>
               {t("reserve")}
             </Link>
-            <LangToggle />
+            <LangToggle tone={overHero ? "light" : "dark"} />
           </nav>
 
           <div className="md:hidden flex items-center gap-4">
-            <LangToggle />
+            <LangToggle tone={overHero ? "light" : "dark"} />
             <button
               type="button"
               onClick={() => setOpen(true)}
-              className="text-xs tracking-[0.2em] uppercase text-espresso"
+              className={mobileBtnClass}
               aria-label={t("openMenu")}
             >
               {t("openMenu")}
