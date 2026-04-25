@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import MaskedHeading from "@/components/MaskedHeading";
 import ScrollReveal from "@/components/ScrollReveal";
 import ArchedImage from "@/components/ArchedImage";
@@ -6,19 +7,32 @@ import MarqueeBand from "@/components/MarqueeBand";
 import Image from "next/image";
 import { images } from "@/lib/images";
 
-export const metadata: Metadata = {
-  title: "Our Story",
-  description:
-    "How Augusto became a sunlit room on Rua de Belém — a small family of cooks, baristas and gardeners building a slow morning ritual.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "nav" });
+  return { title: t("story") };
+}
 
-export default function StoryPage() {
+export default async function StoryPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("story");
+  const marquee = t.raw("marquee") as string[];
+
   return (
     <>
       <section className="relative bg-cream pt-40 md:pt-56 pb-24 md:pb-32">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
           <MaskedHeading
-            text="A small family, a sunlit room, and the slow start of a neighbourhood."
+            text={t("h1")}
             as="h1"
             className="text-5xl md:text-7xl lg:text-8xl text-espresso"
           />
@@ -30,7 +44,7 @@ export default function StoryPage() {
           <div className="relative w-full aspect-[16/9] arched bg-sand overflow-hidden">
             <Image
               src={images.exterior}
-              alt="Augusto Lisboa exterior on Rua de Belém"
+              alt="Augusto Lisboa exterior"
               fill
               priority
               sizes="100vw"
@@ -45,7 +59,7 @@ export default function StoryPage() {
           <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-4 md:col-start-2">
               <MaskedHeading
-                text="The Room"
+                text={t("chapterOne")}
                 as="h2"
                 className="text-4xl md:text-5xl text-espresso mb-8"
               />
@@ -53,17 +67,12 @@ export default function StoryPage() {
             <div className="md:col-span-6">
               <ScrollReveal>
                 <p className="text-espresso/85 text-lg md:text-xl leading-relaxed">
-                  In 2021 we found an empty corner shop on Rua de Belém —
-                  cracked tile, a forgotten back garden, and a single tall
-                  window that filled the room with afternoon light.
+                  {t("chapterOneA")}
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={0.2} className="mt-6">
                 <p className="text-espresso/80 text-base md:text-lg leading-relaxed">
-                  We saved the tiles. Plastered the walls a soft cream. Built a
-                  long oak counter with a fluted base, and laid a terracotta
-                  floor that warms in the morning sun. The room rebuilt itself
-                  almost — we simply kept what was already beautiful.
+                  {t("chapterOneB")}
                 </p>
               </ScrollReveal>
             </div>
@@ -84,22 +93,18 @@ export default function StoryPage() {
             </div>
             <div className="md:col-span-4 md:col-start-9 md:pt-32">
               <MaskedHeading
-                text="The People"
+                text={t("chapterTwo")}
                 as="h2"
                 className="text-4xl md:text-5xl text-espresso mb-8"
               />
               <ScrollReveal>
                 <p className="text-espresso/85 leading-relaxed">
-                  Augusto is family in the small sense — five people who learned
-                  to cook from grandmothers, who roast their own coffee in a
-                  garage two streets over, and who tend a tiny garden of herbs
-                  out back.
+                  {t("chapterTwoA")}
                 </p>
               </ScrollReveal>
               <ScrollReveal delay={0.2} className="mt-5">
                 <p className="text-espresso/80 leading-relaxed">
-                  We hire slowly. We stay open daily. We keep the menu short so
-                  the cooking can stay generous.
+                  {t("chapterTwoB")}
                 </p>
               </ScrollReveal>
             </div>
@@ -107,31 +112,20 @@ export default function StoryPage() {
         </div>
       </section>
 
-      <MarqueeBand
-        items={[
-          "Slow Mornings",
-          "Sunlit Rooms",
-          "Considered Plates",
-          "Made Carefully",
-        ]}
-        tone="ochre"
-      />
+      <MarqueeBand items={marquee} tone="ochre" />
 
       <section className="bg-cream py-32 md:py-48">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
           <div className="grid grid-cols-1 gap-16 md:grid-cols-12 md:gap-20">
             <div className="md:col-span-5">
               <MaskedHeading
-                text="The Way We Cook"
+                text={t("chapterThree")}
                 as="h2"
                 className="text-4xl md:text-5xl text-espresso mb-8"
               />
               <ScrollReveal>
                 <p className="text-espresso/85 leading-relaxed">
-                  We buy from three farms in the Tagus valley, bake bread daily
-                  and make our own jam in summer. Our coffee is roasted on
-                  Tuesdays. The eggs come from a family in Sintra who name
-                  their hens.
+                  {t("chapterThreeA")}
                 </p>
               </ScrollReveal>
             </div>
@@ -161,13 +155,12 @@ export default function StoryPage() {
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
           <blockquote className="max-w-4xl">
             <p className="heading-display text-cream text-balance text-3xl md:text-5xl lg:text-6xl leading-[1.1]">
-              <em className="script-accent text-ochre not-italic">"</em>
-              We wanted a place where breakfast lasts as long as the coffee, and
-              the coffee lasts as long as the conversation.
-              <em className="script-accent text-ochre not-italic">"</em>
+              <em className="script-accent text-ochre not-italic">&ldquo;</em>
+              {t("quote")}
+              <em className="script-accent text-ochre not-italic">&rdquo;</em>
             </p>
             <footer className="mt-10 text-xs tracking-[0.2em] uppercase text-cream/60">
-              — The Augusto Family
+              {t("quoteSig")}
             </footer>
           </blockquote>
         </div>

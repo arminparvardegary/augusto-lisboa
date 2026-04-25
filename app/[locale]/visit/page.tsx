@@ -1,39 +1,48 @@
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import MaskedHeading from "@/components/MaskedHeading";
 import ScrollReveal from "@/components/ScrollReveal";
 import ArchedImage from "@/components/ArchedImage";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { images } from "@/lib/images";
 import { site } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "Visit",
-  description:
-    "Find Augusto Lisboa on Rua de Belém. Mon–Fri 10:00–15:30, Weekends 09:30–16:00, Closed Wednesdays.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "nav" });
+  return { title: t("visit") };
+}
 
-const moments = [
-  {
-    label: "Late mornings",
-    desc: "Quiet from 10 to 11 — best for a long table and a slow flat white.",
-  },
-  {
-    label: "Brunch",
-    desc: "Busiest from 12 to 14, especially on weekends. Walk-ins welcome.",
-  },
-  {
-    label: "Afternoons",
-    desc: "After 15:00 the room thins out — pastel de nata, filter coffee, slow conversation.",
-  },
-];
+export default async function VisitPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("visit");
 
-export default function VisitPage() {
+  const moments = [
+    { label: t("moments.morningsLabel"), desc: t("moments.morningsDesc") },
+    { label: t("moments.brunchLabel"), desc: t("moments.brunchDesc") },
+    { label: t("moments.afternoonsLabel"), desc: t("moments.afternoonsDesc") },
+  ];
+
+  const hours = site.hours.map((h) => ({
+    days: h.days,
+    time: h.time === "Closed" ? t("closed") : h.time,
+  }));
+
   return (
     <>
       <section className="relative bg-cream pt-40 md:pt-56 pb-24 md:pb-32">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
           <MaskedHeading
-            text="Come sit. The kettle is already warm."
+            text={t("h1")}
             as="h1"
             className="text-5xl md:text-7xl lg:text-8xl text-espresso"
           />
@@ -69,20 +78,28 @@ export default function VisitPage() {
                     rel="noreferrer noopener"
                     className="mt-6 inline-flex items-center gap-2 text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
                   >
-                    Open in Maps <span className="text-ochre">→</span>
+                    {t("openMaps")} <span className="text-ochre">→</span>
                   </a>
                 </div>
 
                 <div>
-                  <h2 className="heading-display text-espresso text-2xl mb-4">Hours</h2>
+                  <h2 className="heading-display text-espresso text-2xl mb-4">
+                    {t("hours")}
+                  </h2>
                   <ul className="space-y-3">
-                    {site.hours.map((h) => (
+                    {hours.map((h) => (
                       <li
                         key={h.days}
                         className="flex justify-between gap-4 text-espresso/85 text-base md:text-lg"
                       >
                         <span>{h.days}</span>
-                        <span className={`heading-display ${h.time === "Closed" ? "text-espresso/50 italic" : "text-espresso"}`}>
+                        <span
+                          className={`heading-display ${
+                            h.time === t("closed")
+                              ? "text-espresso/50 italic"
+                              : "text-espresso"
+                          }`}
+                        >
                           {h.time}
                         </span>
                       </li>
@@ -91,7 +108,9 @@ export default function VisitPage() {
                 </div>
 
                 <div>
-                  <h2 className="heading-display text-espresso text-2xl mb-4">Reach Us</h2>
+                  <h2 className="heading-display text-espresso text-2xl mb-4">
+                    {t("reachUs")}
+                  </h2>
                   <ul className="space-y-2 text-espresso/85">
                     <li>
                       <a
@@ -129,7 +148,7 @@ export default function VisitPage() {
                     href="/reserve"
                     className="inline-flex items-center gap-2 text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
                   >
-                    Reserve a table <span className="text-ochre">→</span>
+                    {t("reserveCta")} <span className="text-ochre">→</span>
                   </Link>
                 </div>
               </ScrollReveal>
@@ -142,7 +161,7 @@ export default function VisitPage() {
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
           <div className="mb-16">
             <h2 className="heading-display text-espresso text-3xl md:text-5xl text-balance max-w-3xl">
-              Three quiet windows in the day.
+              {t("momentsHeading")}
             </h2>
           </div>
 
@@ -168,11 +187,10 @@ export default function VisitPage() {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-center">
             <div className="md:col-span-5">
               <h2 className="heading-display text-espresso text-3xl md:text-4xl text-balance">
-                Find us under the arches.
+                {t("findHeading")}
               </h2>
               <p className="mt-6 text-espresso/80 leading-relaxed max-w-md">
-                A short walk from Mosteiro dos Jerónimos. Tram 15 stops at the
-                corner.
+                {t("findBody")}
               </p>
               <a
                 href={site.contact.mapsUrl}
@@ -180,7 +198,7 @@ export default function VisitPage() {
                 rel="noreferrer noopener"
                 className="mt-6 inline-flex items-center gap-2 text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
               >
-                Get directions <span className="text-ochre">→</span>
+                {t("getDirections")} <span className="text-ochre">→</span>
               </a>
             </div>
             <div className="md:col-span-7">

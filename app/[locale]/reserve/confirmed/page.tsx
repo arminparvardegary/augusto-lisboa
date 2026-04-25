@@ -1,22 +1,34 @@
 import type { Metadata } from "next";
 import { format } from "date-fns";
-import Link from "next/link";
+import { pt as ptLocale, enGB } from "date-fns/locale";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import MaskedHeading from "@/components/MaskedHeading";
 import ScrollReveal from "@/components/ScrollReveal";
+import { Link } from "@/i18n/routing";
 import { prisma, isDbConfigured } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Reservation confirmed",
-  description: "Your table at Augusto Lisboa is held. See you soon.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "confirmed" });
+  return { title: t("h1", { name: "" }).replace(",", "") };
+}
 
 export default async function Confirmed({
+  params,
   searchParams,
 }: {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<{ id?: string }>;
 }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("confirmed");
   const { id } = await searchParams;
   const reservation =
     isDbConfigured && id
@@ -25,13 +37,17 @@ export default async function Confirmed({
           .catch(() => null)
       : null;
 
-  const firstName = reservation?.name?.split(" ")[0] ?? "friend";
+  const dateFnsLocale = locale === "pt" ? ptLocale : enGB;
+  const firstName = reservation?.name?.split(" ")[0] ?? "amigo";
+  const dateLabel = reservation
+    ? format(reservation.date, "EEEE d MMMM", { locale: dateFnsLocale })
+    : "";
 
   return (
     <section className="relative bg-cream pt-40 md:pt-56 pb-32 md:pb-48 min-h-[85vh]">
       <div className="mx-auto max-w-[1100px] px-6 md:px-12 text-center">
         <MaskedHeading
-          text={`See you soon, ${firstName}.`}
+          text={t("h1", { name: firstName })}
           as="h1"
           className="text-5xl md:text-7xl lg:text-8xl text-espresso"
         />
@@ -39,20 +55,17 @@ export default async function Confirmed({
           {reservation ? (
             <>
               <p className="text-espresso/85 text-lg md:text-xl leading-relaxed">
-                Table for <strong>{reservation.partySize}</strong> on{" "}
-                <strong>{format(reservation.date, "EEEE d MMMM")}</strong> at{" "}
+                {t("tableFor")} <strong>{reservation.partySize}</strong>{" "}
+                {t("on")} <strong>{dateLabel}</strong> {t("at")}{" "}
                 <strong>{reservation.timeSlot}</strong>.
               </p>
               <p className="text-espresso/70 leading-relaxed">
-                A confirmation is on its way to{" "}
-                <span className="text-espresso">{reservation.email}</span>. The
-                kitchen&apos;s already excited.
+                {t("emailSent", { email: reservation.email })}
               </p>
             </>
           ) : (
             <p className="text-espresso/85 text-lg md:text-xl leading-relaxed">
-              Your table is held. A confirmation should arrive in your inbox
-              shortly — if not, email{" "}
+              {t("fallback")}{" "}
               <a
                 href="mailto:ola@augustolisboa.pt"
                 className="border-b border-ochre hover:text-ochre transition-colors"
@@ -68,7 +81,7 @@ export default async function Confirmed({
               href="/"
               className="inline-flex items-center gap-3 border border-espresso px-8 py-4 text-xs tracking-[0.25em] uppercase text-espresso hover:bg-espresso hover:text-cream transition-colors duration-300"
             >
-              Back to Augusto
+              {t("back")}
             </Link>
           </div>
         </ScrollReveal>

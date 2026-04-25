@@ -2,11 +2,6 @@ import type { Metadata } from "next";
 import { Fraunces, Inter, Allura } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import SmoothScrollProvider from "@/components/SmoothScrollProvider";
-import Preloader from "@/components/Preloader";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
-import PageTransition from "@/components/PageTransition";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -39,7 +34,7 @@ export const metadata: Metadata = {
     template: "%s · Augusto Lisboa",
   },
   description:
-    "Specialty coffee and brunch in Belém, Lisbon. Slow mornings, sunlit interiors, considered plates. Better food, better mood.",
+    "Specialty coffee and brunch in Belém, Lisbon. Slow mornings, sunlit interiors, considered plates.",
   keywords: [
     "Augusto Lisboa",
     "Belém café",
@@ -103,7 +98,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="en"
+      lang="pt"
       className={`${fraunces.variable} ${inter.variable} ${allura.variable} antialiased`}
     >
       <body className="bg-cream text-espresso min-h-screen">
@@ -112,14 +107,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
-        <Preloader />
-        <SmoothScrollProvider>
-          <Nav />
-          <PageTransition>
-            <main>{children}</main>
-            <Footer />
-          </PageTransition>
-        </SmoothScrollProvider>
+        {children}
       </body>
     </html>
   );

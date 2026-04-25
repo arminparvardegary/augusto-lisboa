@@ -1,0 +1,197 @@
+{
+  "nav": {
+    "menu": "Menu",
+    "story": "Story",
+    "visit": "Visit",
+    "reserve": "Reserve",
+    "openMenu": "Menu",
+    "closeMenu": "Close",
+    "home": "Home"
+  },
+  "hero": {
+    "headlineA": "A slower",
+    "scriptWord": "morning",
+    "headlineB": "in Belém.",
+    "cta": "Begin the day"
+  },
+  "home": {
+    "storyHeading": "Augusto is a sunlit room on Rua de Belém — slow brunches, careful coffee, and a kitchen that treats every plate as a small, generous gesture.",
+    "storyBody": "Augusto started as a small idea between friends — a corner of Belém where the coffee is taken seriously, the eggs come from a farm we trust, and the avocado is always perfectly ripe. Four years on, it's still the same long table, the same playlist, and the same morning light pouring through the arches.",
+    "readStory": "Read our story",
+    "horizontalHeading": "A short menu, served with intention.",
+    "spaceHeading": "Tiles, oak, and a long arched window.",
+    "spaceBody": "We renovated a forgotten corner of Belém into a quiet, Mediterranean room. Plaster walls, fluted counters, terracotta floors and a long communal table where strangers become regulars.",
+    "menuPreviewHeadingA": "Four small",
+    "menuPreviewHeadingItalic": "menus",
+    "menuPreviewHeadingB": ", changing with the season.",
+    "viewMenu": "View the full menu",
+    "footerHeadline": "Slow mornings, sunlit rooms, considered plates.",
+    "planVisit": "Plan your visit",
+    "reserveTable": "Reserve a table",
+    "categoryBar": "The Bar",
+    "categoryAllDay": "All Day",
+    "categoryToasts": "Open-Faced",
+    "categoryPastry": "From the Oven"
+  },
+  "menuPage": {
+    "h1": "A short menu, written every season.",
+    "intro": "We cook with what is grown nearby and roast our coffee a few streets over. The menu is short on purpose — a small selection, made carefully, served warmly.",
+    "marquee": ["Specialty Coffee", "Seasonal Brunch", "Open-Faced Toasts", "Pastry From the Oven"],
+    "askNote": "Dietary needs, allergies, or a quiet table for two —",
+    "askNoteItalic": "just ask",
+    "sections": {
+      "coffee": {
+        "heading": "Coffee, made slowly.",
+        "items": {
+          "espresso": { "name": "Espresso", "desc": "Single origin, rotating" },
+          "macchiato": { "name": "Macchiato", "desc": "Espresso · steamed milk" },
+          "flatWhite": { "name": "Flat White", "desc": "Double ristretto · silk milk" },
+          "cortado": { "name": "Cortado", "desc": "Lisboa house style" },
+          "filter": { "name": "Filter", "desc": "V60 — ask the barista" },
+          "icedLatte": { "name": "Iced Latte", "desc": "Cold brew · oat" }
+        }
+      },
+      "brunch": {
+        "heading": "Brunch, until the room empties.",
+        "items": {
+          "gardenBowl": { "name": "Garden Bowl", "desc": "Roasted veg · grains · tahini" },
+          "eggsAugusto": { "name": "Eggs Augusto", "desc": "Sourdough · poached · brown butter" },
+          "shakshuka": { "name": "Shakshuka", "desc": "Heirloom tomato · feta · herbs" },
+          "smokedSalmon": { "name": "Smoked Salmon", "desc": "Cream cheese · capers · dill" },
+          "pancakes": { "name": "Pancakes", "desc": "Buttermilk · seasonal fruit · maple" }
+        }
+      },
+      "toasts": {
+        "heading": "Toasts, on country sourdough.",
+        "items": {
+          "avocado": { "name": "Avocado", "desc": "Lemon · chili · olive oil" },
+          "ricotta": { "name": "Ricotta & Honey", "desc": "Thyme · sea salt" },
+          "tomate": { "name": "Tomate", "desc": "Heirloom · basil · garlic rub" },
+          "mushroom": { "name": "Mushroom", "desc": "Smoked butter · parsley · egg" }
+        }
+      },
+      "pastry": {
+        "heading": "Pastry, baked at six.",
+        "items": {
+          "croissant": { "name": "Croissant Beurre", "desc": "72-hour laminated" },
+          "painChocolat": { "name": "Pain au Chocolat", "desc": "Belgian chocolate" },
+          "pastel": { "name": "Pastel de Nata", "desc": "Augusto's recipe" },
+          "almondCake": { "name": "Almond Cake", "desc": "Olive oil · orange zest" },
+          "bananaBread": { "name": "Banana Bread", "desc": "Brown butter · walnut" }
+        }
+      }
+    }
+  },
+  "story": {
+    "h1": "A small family, a sunlit room, and the slow start of a neighbourhood.",
+    "chapterOne": "The Room",
+    "chapterOneA": "In 2021 we found an empty corner shop on Rua de Belém — cracked tile, a forgotten back garden, and a single tall window that filled the room with afternoon light.",
+    "chapterOneB": "We saved the tiles. Plastered the walls a soft cream. Built a long oak counter with a fluted base, and laid a terracotta floor that warms in the morning sun. The room rebuilt itself almost — we simply kept what was already beautiful.",
+    "chapterTwo": "The People",
+    "chapterTwoA": "Augusto is family in the small sense — five people who learned to cook from grandmothers, who roast their own coffee in a garage two streets over, and who tend a tiny garden of herbs out back.",
+    "chapterTwoB": "We hire slowly. We stay open daily. We keep the menu short so the cooking can stay generous.",
+    "chapterThree": "The Way We Cook",
+    "chapterThreeA": "We buy from three farms in the Tagus valley, bake bread daily and make our own jam in summer. Our coffee is roasted on Tuesdays. The eggs come from a family in Sintra who name their hens.",
+    "marquee": ["Slow Mornings", "Sunlit Rooms", "Considered Plates", "Made Carefully"],
+    "quote": "We wanted a place where breakfast lasts as long as the coffee, and the coffee lasts as long as the conversation.",
+    "quoteSig": "— The Augusto Family"
+  },
+  "visit": {
+    "h1": "Come sit. The kettle is already warm.",
+    "address": "Address",
+    "hours": "Hours",
+    "reachUs": "Reach Us",
+    "openMaps": "Open in Maps",
+    "getDirections": "Get directions",
+    "reserveCta": "Reserve a table",
+    "momentsHeading": "Three quiet windows in the day.",
+    "moments": {
+      "morningsLabel": "Late mornings",
+      "morningsDesc": "Quiet from 10 to 11 — best for a long table and a slow flat white.",
+      "brunchLabel": "Brunch",
+      "brunchDesc": "Busiest from 12 to 14, especially on weekends. Walk-ins welcome.",
+      "afternoonsLabel": "Afternoons",
+      "afternoonsDesc": "After 15:00 the room thins out — pastel de nata, filter coffee, slow conversation."
+    },
+    "findHeading": "Find us under the arches.",
+    "findBody": "A short walk from Mosteiro dos Jerónimos. Tram 15 stops at the corner.",
+    "closed": "Closed"
+  },
+  "reserve": {
+    "h1": "Save us a morning.",
+    "intro": "We hold tables with a small €3 per person — it comes straight off your bill when you arrive. It just helps us keep the kitchen calm and fair to everyone waiting.",
+    "smallerGroups": "Smaller groups",
+    "smallerGroupsBody": "Two to four people — we'll always find a corner.",
+    "largerTables": "Larger tables",
+    "largerTablesBody": "Five or more — please reserve so we can prepare the long table at the back.",
+    "cancellation": "Cancellation",
+    "cancellationBody": "Refunded if you cancel at least 12 hours before. Just reply to your confirmation email.",
+    "loading": "Loading availability…",
+    "fallback": "Live availability isn't connected yet — send us your details and we'll write back the same day.",
+    "pickDay": "Pick a day",
+    "pickTime": "Pick a time",
+    "fullyBooked": "Fully booked this day — try another?",
+    "closedNotice": "We're closed this day ({reason}). Pick another and we'll save you a sunlit corner.",
+    "name": "Your name",
+    "namePlaceholder": "Maria Santos",
+    "nameRequired": "Please tell us your name",
+    "email": "Email",
+    "emailPlaceholder": "maria@example.com",
+    "emailRequired": "So we can confirm",
+    "emailInvalid": "Hmm, check that email",
+    "phone": "Phone (optional)",
+    "phonePlaceholder": "+351 …",
+    "partySize": "How many of you?",
+    "person": "person",
+    "people": "people",
+    "notes": "Anything we should know? (allergies, occasion…)",
+    "notesPlaceholder": "Birthday brunch, lactose-free, quiet corner…",
+    "holdFee": "Hold-your-table fee",
+    "holdFeeNote": "€3 × {count} {label} — fully redeemable against your bill on the day. Refunded if you cancel at least 12h before.",
+    "submit": "Hold my table",
+    "submitting": "Saving your table…",
+    "stripeNote": "Card details are handled by Stripe — we never see them. You won't be charged until you confirm on the next page.",
+    "errorGeneric": "Something went wrong. Please try again.",
+    "errorNetwork": "Network error. Please try again."
+  },
+  "reserveSimple": {
+    "name": "Your name",
+    "email": "Email",
+    "phone": "Phone (optional)",
+    "date": "Date",
+    "time": "Time",
+    "party": "Party size",
+    "notes": "A note for the kitchen (optional)",
+    "send": "Send request",
+    "thanksHeading": "Your email is on its way.",
+    "thanksBody": "We've opened your mail app with the request pre-written — please send it and we'll write back the same day. If nothing opened, drop us a line at",
+    "or": "or DM us on",
+    "instagram": "Instagram",
+    "edit": "Edit and resend",
+    "messageUs": "Or message us on"
+  },
+  "confirmed": {
+    "h1": "See you soon, {name}.",
+    "tableFor": "Table for",
+    "on": "on",
+    "at": "at",
+    "emailSent": "A confirmation is on its way to {email}. The kitchen's already excited.",
+    "fallback": "Your table is held. A confirmation should arrive in your inbox shortly — if not, email",
+    "back": "Back to Augusto"
+  },
+  "footer": {
+    "headlineA": "Slow mornings,",
+    "headlineItalic": "sunlit",
+    "headlineB": "rooms, considered plates.",
+    "visit": "Visit",
+    "connect": "Connect",
+    "openDaily": "Open daily"
+  },
+  "marquee": {
+    "specialtyCoffee": "Specialty Coffee",
+    "brunch": "Brunch",
+    "belemLisboa": "Belém · Lisboa",
+    "since2021": "Since 2021",
+    "betterFood": "Better Food, Better Mood"
+  }
+}

@@ -1,31 +1,42 @@
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import MaskedHeading from "@/components/MaskedHeading";
 import ScrollReveal from "@/components/ScrollReveal";
 import ArchedImage from "@/components/ArchedImage";
 import ReserveFlow from "@/components/ReserveFlow";
 import { images } from "@/lib/images";
 
-export const metadata: Metadata = {
-  title: "Reserve",
-  description:
-    "Hold your table at Augusto Lisboa with a small €3 per person, redeemable against your bill on the day.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "nav" });
+  return { title: t("reserve") };
+}
 
-export default function ReservePage() {
+export default async function ReservePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("reserve");
+
   return (
     <>
       <section className="relative bg-cream pt-40 md:pt-56 pb-16 md:pb-24">
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
           <MaskedHeading
-            text="Save us a morning."
+            text={t("h1")}
             as="h1"
             className="text-5xl md:text-8xl lg:text-9xl text-espresso"
           />
           <ScrollReveal delay={0.4} className="mt-12 max-w-2xl">
             <p className="text-espresso/85 text-lg md:text-xl leading-relaxed">
-              We hold tables with a small <strong>€3 per person</strong> — it
-              comes straight off your bill when you arrive. It just helps us
-              keep the kitchen calm and fair to everyone waiting.
+              {t("intro")}
             </p>
           </ScrollReveal>
         </div>
@@ -45,28 +56,26 @@ export default function ReservePage() {
               <ScrollReveal delay={0.2} className="mt-10 space-y-6">
                 <div>
                   <h2 className="heading-display text-espresso text-2xl mb-2">
-                    Smaller groups
+                    {t("smallerGroups")}
                   </h2>
                   <p className="text-espresso/80 leading-relaxed">
-                    Two to four people — we&apos;ll always find a corner.
+                    {t("smallerGroupsBody")}
                   </p>
                 </div>
                 <div>
                   <h2 className="heading-display text-espresso text-2xl mb-2">
-                    Larger tables
+                    {t("largerTables")}
                   </h2>
                   <p className="text-espresso/80 leading-relaxed">
-                    Five or more — please reserve so we can prepare the long
-                    table at the back.
+                    {t("largerTablesBody")}
                   </p>
                 </div>
                 <div>
                   <h2 className="heading-display text-espresso text-2xl mb-2">
-                    Cancellation
+                    {t("cancellation")}
                   </h2>
                   <p className="text-espresso/80 leading-relaxed">
-                    Refunded if you cancel at least 12 hours before. Just reply
-                    to your confirmation email.
+                    {t("cancellationBody")}
                   </p>
                 </div>
               </ScrollReveal>

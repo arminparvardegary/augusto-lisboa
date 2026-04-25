@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
+import { useTranslations, useLocale } from "next-intl";
 import ReserveForm from "./ReserveForm";
 
 type Slot = { time: string; available: boolean; remaining: number };
@@ -31,6 +32,8 @@ type Status =
   | { kind: "fallback"; reason: string };
 
 export default function ReserveFlow() {
+  const t = useTranslations("reserve");
+  const locale = useLocale();
   const [status, setStatus] = useState<Status>({ kind: "loading" });
   const [selectedDay, setSelectedDay] = useState<string>("");
   const [selectedSlot, setSelectedSlot] = useState<string>("");
@@ -93,17 +96,18 @@ export default function ReserveFlow() {
           partySize: Number(values.partySize),
           date: selectedDay,
           timeSlot: selectedSlot,
+          language: locale,
         }),
       });
       const data = await res.json();
       if (!res.ok) {
-        setServerError(data.error || "Something went wrong.");
+        setServerError(data.error || t("errorGeneric"));
         setSubmitting(false);
         return;
       }
       window.location.href = data.url;
     } catch (err) {
-      setServerError("Network error. Please try again.");
+      setServerError(t("errorNetwork"));
       setSubmitting(false);
     }
   }
@@ -112,7 +116,7 @@ export default function ReserveFlow() {
     return (
       <div className="flex items-center gap-3 text-espresso/60 text-sm">
         <span className="inline-block h-2 w-2 rounded-full bg-ochre animate-pulse" />
-        Loading availability…
+        {t("loading")}
       </div>
     );
   }
@@ -121,8 +125,7 @@ export default function ReserveFlow() {
     return (
       <div className="space-y-8">
         <div className="border-l-2 border-ochre/70 pl-5 text-espresso/75 text-sm">
-          Live availability isn&apos;t connected yet — send us your details
-          and we&apos;ll write back the same day.
+          {t("fallback")}
         </div>
         <ReserveForm />
       </div>
@@ -130,13 +133,13 @@ export default function ReserveFlow() {
   }
 
   const { days } = status;
+  const partyLabel = partySize === 1 ? t("person") : t("people");
 
   return (
     <div className="space-y-12">
-      {/* Day picker */}
       <section>
         <h2 className="heading-display text-espresso text-2xl md:text-3xl mb-6">
-          Pick a day
+          {t("pickDay")}
         </h2>
         <div className="flex gap-3 overflow-x-auto pb-4" data-lenis-prevent>
           {days.map((d) => {
@@ -174,7 +177,6 @@ export default function ReserveFlow() {
         </div>
       </section>
 
-      {/* Time picker */}
       <AnimatePresence mode="wait">
         {day && !day.isClosed && (
           <motion.section
@@ -185,7 +187,7 @@ export default function ReserveFlow() {
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
           >
             <h2 className="heading-display text-espresso text-2xl md:text-3xl mb-6">
-              Pick a time
+              {t("pickTime")}
             </h2>
             <div className="grid grid-cols-3 gap-3 md:grid-cols-5">
               {day.slots.map((s) => (
@@ -209,7 +211,7 @@ export default function ReserveFlow() {
             </div>
             {day.slots.every((s) => !s.available) && (
               <p className="mt-4 text-sm text-espresso/60 italic">
-                Fully booked this day — try another?
+                {t("fullyBooked")}
               </p>
             )}
           </motion.section>
@@ -224,14 +226,12 @@ export default function ReserveFlow() {
             className="bg-blush/40 p-6 border-l-2 border-ochre/70"
           >
             <p className="text-espresso/85 leading-relaxed">
-              We&apos;re closed this day ({day.closedReason}). Pick another
-              and we&apos;ll save you a sunlit corner.
+              {t("closedNotice", { reason: day.closedReason ?? "" })}
             </p>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Form */}
       <AnimatePresence>
         {selectedDay && selectedSlot && (
           <motion.form
@@ -244,38 +244,42 @@ export default function ReserveFlow() {
           >
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               <Field
-                label="Your name"
+                label={t("name")}
                 error={errors.name?.message}
                 inputId="name"
               >
                 <input
                   id="name"
-                  {...register("name", { required: "Please tell us your name" })}
+                  {...register("name", { required: t("nameRequired") })}
                   className={inputClass}
-                  placeholder="Maria Santos"
+                  placeholder={t("namePlaceholder")}
                 />
               </Field>
-              <Field label="Email" error={errors.email?.message} inputId="email">
+              <Field
+                label={t("email")}
+                error={errors.email?.message}
+                inputId="email"
+              >
                 <input
                   id="email"
                   type="email"
                   {...register("email", {
-                    required: "So we can confirm",
-                    pattern: { value: /\S+@\S+\.\S+/, message: "Hmm, check that email" },
+                    required: t("emailRequired"),
+                    pattern: { value: /\S+@\S+\.\S+/, message: t("emailInvalid") },
                   })}
                   className={inputClass}
-                  placeholder="maria@example.com"
+                  placeholder={t("emailPlaceholder")}
                 />
               </Field>
-              <Field label="Phone (optional)" inputId="phone">
+              <Field label={t("phone")} inputId="phone">
                 <input
                   id="phone"
                   {...register("phone")}
                   className={inputClass}
-                  placeholder="+351 …"
+                  placeholder={t("phonePlaceholder")}
                 />
               </Field>
-              <Field label="How many of you?" inputId="partySize">
+              <Field label={t("partySize")} inputId="partySize">
                 <select
                   id="partySize"
                   {...register("partySize", { valueAsNumber: true })}
@@ -283,37 +287,32 @@ export default function ReserveFlow() {
                 >
                   {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
                     <option key={n} value={n}>
-                      {n} {n === 1 ? "person" : "people"}
+                      {n} {n === 1 ? t("person") : t("people")}
                     </option>
                   ))}
                 </select>
               </Field>
             </div>
 
-            <Field
-              label="Anything we should know? (allergies, occasion…)"
-              inputId="notes"
-            >
+            <Field label={t("notes")} inputId="notes">
               <textarea
                 id="notes"
                 {...register("notes")}
                 rows={3}
                 className={`${inputClass} resize-none`}
-                placeholder="Birthday brunch, lactose-free, quiet corner…"
+                placeholder={t("notesPlaceholder")}
               />
             </Field>
 
             <div className="bg-warmwhite border border-espresso/10 p-5 text-sm text-espresso/85">
               <div className="flex items-baseline justify-between">
-                <span>Hold-your-table fee</span>
+                <span>{t("holdFee")}</span>
                 <span className="heading-display text-xl">
                   €{(partySize * 3).toFixed(2)}
                 </span>
               </div>
               <p className="mt-2 text-xs text-espresso/60 leading-relaxed">
-                €3 × {partySize} {partySize === 1 ? "person" : "people"} —
-                fully redeemable against your bill on the day. Refunded if you
-                cancel at least 12h before.
+                {t("holdFeeNote", { count: partySize, label: partyLabel })}
               </p>
             </div>
 
@@ -328,7 +327,7 @@ export default function ReserveFlow() {
               disabled={submitting}
               className="group inline-flex items-center gap-3 bg-espresso text-cream px-8 py-4 text-xs tracking-[0.25em] uppercase hover:bg-ochre hover:text-ink transition-colors duration-300 disabled:opacity-50"
             >
-              {submitting ? "Saving your table…" : "Hold my table"}
+              {submitting ? t("submitting") : t("submit")}
               <span
                 aria-hidden
                 className="transition-transform duration-500 group-hover:translate-x-1"
@@ -338,8 +337,7 @@ export default function ReserveFlow() {
             </button>
 
             <p className="text-xs text-espresso/50 leading-relaxed">
-              Card details are handled by Stripe — we never see them. You
-              won&apos;t be charged until you confirm on the next page.
+              {t("stripeNote")}
             </p>
           </motion.form>
         )}

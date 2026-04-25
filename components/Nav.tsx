@@ -1,18 +1,15 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/cn";
-
-const links = [
-  { href: "/menu", label: "Menu" },
-  { href: "/story", label: "Story" },
-  { href: "/visit", label: "Visit" },
-];
+import LangToggle from "./LangToggle";
 
 export default function Nav() {
+  const t = useTranslations("nav");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -32,6 +29,12 @@ export default function Nav() {
 
   const linkClass =
     "text-xs tracking-[0.2em] uppercase text-espresso/80 hover:text-ochre transition-colors duration-300";
+
+  const links = [
+    { href: "/menu", key: "menu" as const },
+    { href: "/story", key: "story" as const },
+    { href: "/visit", key: "visit" as const },
+  ];
 
   return (
     <>
@@ -54,7 +57,7 @@ export default function Nav() {
           <Link
             href="/"
             className="flex items-center"
-            aria-label="Augusto Lisboa home"
+            aria-label="Augusto Lisboa"
           >
             <Image
               src="/images/logo.png"
@@ -69,25 +72,29 @@ export default function Nav() {
           <nav className="hidden md:flex items-center gap-10">
             {links.map((l) => (
               <Link key={l.href} href={l.href} className={linkClass}>
-                {l.label}
+                {t(l.key)}
               </Link>
             ))}
             <Link
               href="/reserve"
               className="text-xs tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-1 hover:text-ochre transition-colors"
             >
-              Reserve
+              {t("reserve")}
             </Link>
+            <LangToggle />
           </nav>
 
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            className="md:hidden text-xs tracking-[0.2em] uppercase text-espresso"
-            aria-label="Open menu"
-          >
-            Menu
-          </button>
+          <div className="md:hidden flex items-center gap-4">
+            <LangToggle />
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
+              className="text-xs tracking-[0.2em] uppercase text-espresso"
+              aria-label={t("openMenu")}
+            >
+              {t("openMenu")}
+            </button>
+          </div>
         </div>
       </motion.header>
 
@@ -112,9 +119,9 @@ export default function Nav() {
                 type="button"
                 onClick={() => setOpen(false)}
                 className="text-xs tracking-[0.2em] uppercase"
-                aria-label="Close menu"
+                aria-label={t("closeMenu")}
               >
-                Close
+                {t("closeMenu")}
               </button>
             </div>
             <motion.nav
@@ -127,9 +134,9 @@ export default function Nav() {
               className="flex flex-col gap-8 px-6 pt-16"
             >
               {[
-                { href: "/", label: "Home" },
+                { href: "/", key: "home" as const },
                 ...links,
-                { href: "/reserve", label: "Reserve" },
+                { href: "/reserve", key: "reserve" as const },
               ].map((l) => (
                 <motion.div
                   key={l.href}
@@ -143,7 +150,7 @@ export default function Nav() {
                     onClick={() => setOpen(false)}
                     className="heading-display text-5xl"
                   >
-                    {l.label}
+                    {t(l.key)}
                   </Link>
                 </motion.div>
               ))}

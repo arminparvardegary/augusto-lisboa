@@ -1,3 +1,4 @@
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import HeroParallax from "@/components/HeroParallax";
 import MaskedHeading from "@/components/MaskedHeading";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -7,11 +8,19 @@ import HorizontalScroll from "@/components/HorizontalScroll";
 import MarqueeBand from "@/components/MarqueeBand";
 import StickyBadge from "@/components/StickyBadge";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { images } from "@/lib/images";
 import { site } from "@/lib/content";
 
-export default function HomePage() {
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations();
+
   const cards = site.signatureCards.map((c) => ({
     title: c.title,
     subtitle: c.subtitle,
@@ -25,10 +34,10 @@ export default function HomePage() {
       <HeroParallax
         image={images.heroInterior}
         imageAlt="Sunlit interior at Augusto Lisboa, Belém"
-        headline={site.hero.headline}
-        scriptWord={site.hero.scriptWord}
-        tail={site.hero.tail}
-        cta={{ href: "#story", label: site.hero.cta }}
+        headline={t("hero.headlineA")}
+        scriptWord={t("hero.scriptWord")}
+        tail={t("hero.headlineB")}
+        cta={{ href: "#story", label: t("hero.cta") }}
       />
 
       <section id="story" className="bg-cream py-32 md:py-48">
@@ -36,19 +45,19 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
             <div className="md:col-span-12">
               <MaskedHeading
-                text={site.story.heading}
+                text={t("home.storyHeading")}
                 as="h2"
                 className="text-4xl md:text-6xl lg:text-7xl text-espresso leading-[1.05]"
               />
               <ScrollReveal delay={0.4} className="mt-12 max-w-2xl">
                 <p className="text-espresso/85 text-lg md:text-xl leading-relaxed">
-                  {site.story.intro}
+                  {t("home.storyBody")}
                 </p>
                 <Link
                   href="/story"
                   className="mt-10 inline-flex items-center gap-3 text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
                 >
-                  Read our story <span className="text-ochre">→</span>
+                  {t("home.readStory")} <span className="text-ochre">→</span>
                 </Link>
               </ScrollReveal>
             </div>
@@ -71,7 +80,7 @@ export default function HomePage() {
       </section>
 
       <HorizontalScroll
-        heading="A short menu, served with intention."
+        heading={t("home.horizontalHeading")}
         cards={cards}
       />
 
@@ -80,16 +89,13 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5 md:pt-32">
               <MaskedHeading
-                text="Tiles, oak, and a long arched window."
+                text={t("home.spaceHeading")}
                 as="h2"
                 className="text-4xl md:text-6xl text-espresso"
               />
               <ScrollReveal delay={0.3} className="mt-8 max-w-md">
                 <p className="text-espresso/85 leading-relaxed">
-                  We renovated a forgotten corner of Belém into a quiet,
-                  Mediterranean room. Plaster walls, fluted counters, terracotta
-                  floors and a long communal table where strangers become
-                  regulars.
+                  {t("home.spaceBody")}
                 </p>
               </ScrollReveal>
             </div>
@@ -106,7 +112,12 @@ export default function HomePage() {
       </section>
 
       <MarqueeBand
-        items={["Specialty Coffee", "Brunch", "Belém · Lisboa", "Since 2021"]}
+        items={[
+          t("marquee.specialtyCoffee"),
+          t("marquee.brunch"),
+          t("marquee.belemLisboa"),
+          t("marquee.since2021"),
+        ]}
         tone="ochre"
       />
 
@@ -114,29 +125,32 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1600px] px-6 md:px-12">
           <div className="mb-16 md:mb-24">
             <h2 className="heading-display text-espresso text-4xl md:text-6xl text-balance max-w-3xl">
-              Four small <em className="script-accent text-ochre not-italic">menus</em>,
-              changing with the season.
+              {t("home.menuPreviewHeadingA")}{" "}
+              <em className="script-accent text-ochre not-italic">
+                {t("home.menuPreviewHeadingItalic")}
+              </em>
+              {t("home.menuPreviewHeadingB")}
             </h2>
           </div>
 
           <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-10">
             <ProjectCard
-              title="The Bar"
+              title={t("home.categoryBar")}
               href="/menu#coffee"
               image={images.espresso}
             />
             <ProjectCard
-              title="All Day"
+              title={t("home.categoryAllDay")}
               href="/menu#brunch"
               image={images.brunchOverhead}
             />
             <ProjectCard
-              title="Open-Faced"
+              title={t("home.categoryToasts")}
               href="/menu#toasts"
               image={images.avocadoToast}
             />
             <ProjectCard
-              title="From the Oven"
+              title={t("home.categoryPastry")}
               href="/menu#pastry"
               image={images.croissant}
             />
@@ -147,7 +161,7 @@ export default function HomePage() {
               href="/menu"
               className="text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
             >
-              View the full menu →
+              {t("home.viewMenu")} →
             </Link>
           </ScrollReveal>
         </div>
@@ -157,10 +171,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-16">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4 items-center">
             {site.press.map((p) => (
-              <ScrollReveal
-                key={p.name}
-                className="text-center"
-              >
+              <ScrollReveal key={p.name} className="text-center">
                 <div className="heading-display text-espresso/80 text-xl md:text-2xl">
                   {p.name}
                 </div>
@@ -178,7 +189,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-16 md:grid-cols-12 md:gap-20 items-end">
             <div className="md:col-span-7">
               <MaskedHeading
-                text="Slow mornings, sunlit rooms, considered plates."
+                text={t("home.footerHeadline")}
                 as="h2"
                 className="text-4xl md:text-6xl lg:text-7xl text-cream"
               />
@@ -187,49 +198,44 @@ export default function HomePage() {
                   href="/visit"
                   className="text-sm tracking-[0.2em] uppercase text-cream border-b border-ochre pb-2 hover:text-ochre transition-colors"
                 >
-                  Plan your visit →
+                  {t("home.planVisit")} →
                 </Link>
                 <Link
                   href="/reserve"
                   className="text-sm tracking-[0.2em] uppercase text-cream border-b border-cream/40 pb-2 hover:text-ochre hover:border-ochre transition-colors"
                 >
-                  Reserve a table →
+                  {t("home.reserveTable")} →
                 </Link>
               </ScrollReveal>
             </div>
             <div className="md:col-span-5">
               <ScrollReveal className="space-y-8">
-                <div>
-                  <p className="leading-relaxed text-cream/90">
-                    {site.contact.address.street}
-                    <br />
-                    {site.contact.address.postal} {site.contact.address.city}, {site.contact.address.country}
-                  </p>
-                </div>
-                <div>
-                  <p className="leading-relaxed text-cream/90">
-                    {site.hoursShort}
-                  </p>
-                </div>
-                <div>
-                  <p className="leading-relaxed text-cream/90">
-                    <a
-                      href={site.brand.instagramUrl}
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      className="hover:text-ochre transition-colors"
-                    >
-                      {site.brand.instagramHandle}
-                    </a>
-                    <br />
-                    <a
-                      href={`mailto:${site.contact.email}`}
-                      className="hover:text-ochre transition-colors"
-                    >
-                      {site.contact.email}
-                    </a>
-                  </p>
-                </div>
+                <p className="leading-relaxed text-cream/90">
+                  {site.contact.address.street}
+                  <br />
+                  {site.contact.address.postal} {site.contact.address.city},{" "}
+                  {site.contact.address.country}
+                </p>
+                <p className="leading-relaxed text-cream/90">
+                  {site.hoursShort}
+                </p>
+                <p className="leading-relaxed text-cream/90">
+                  <a
+                    href={site.brand.instagramUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="hover:text-ochre transition-colors"
+                  >
+                    {site.brand.instagramHandle}
+                  </a>
+                  <br />
+                  <a
+                    href={`mailto:${site.contact.email}`}
+                    className="hover:text-ochre transition-colors"
+                  >
+                    {site.contact.email}
+                  </a>
+                </p>
               </ScrollReveal>
             </div>
           </div>

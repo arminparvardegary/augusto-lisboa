@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { site } from "@/lib/content";
 
 const partySizes = ["2", "3", "4", "5", "6", "7+"];
@@ -15,6 +16,7 @@ const weekendTimes = [
 ];
 
 export default function ReserveForm() {
+  const t = useTranslations("reserveSimple");
   const [submitted, setSubmitted] = useState(false);
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -59,27 +61,24 @@ export default function ReserveForm() {
           className="border border-espresso/15 bg-warmwhite p-10 md:p-14"
         >
           <h2 className="heading-display text-espresso text-3xl md:text-5xl text-balance">
-            Your email is on its{" "}
-            <em className="script-accent text-ochre not-italic">way</em>.
+            {t("thanksHeading")}
           </h2>
           <p className="mt-6 text-espresso/80 leading-relaxed max-w-md">
-            We've opened your mail app with the request pre-written — please
-            send it and we'll write back the same day. If nothing opened, drop
-            us a line at{" "}
+            {t("thanksBody")}{" "}
             <a
               href={`mailto:${site.contact.email}`}
               className="hover:text-ochre transition-colors border-b border-ochre"
             >
               {site.contact.email}
             </a>{" "}
-            or DM us on{" "}
+            {t("or")}{" "}
             <a
               href={site.brand.instagramUrl}
               target="_blank"
               rel="noreferrer noopener"
               className="hover:text-ochre transition-colors border-b border-ochre"
             >
-              Instagram
+              {t("instagram")}
             </a>
             .
           </p>
@@ -88,7 +87,7 @@ export default function ReserveForm() {
             onClick={() => setSubmitted(false)}
             className="mt-10 inline-flex items-center gap-2 text-sm tracking-[0.2em] uppercase text-espresso border-b border-ochre pb-2 hover:text-ochre transition-colors"
           >
-            Edit and resend →
+            {t("edit")} →
           </button>
         </motion.div>
       ) : (
@@ -103,7 +102,7 @@ export default function ReserveForm() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             <div>
               <label htmlFor="name" className={fieldLabel}>
-                Your Name
+                {t("name")}
               </label>
               <input
                 id="name"
@@ -116,7 +115,7 @@ export default function ReserveForm() {
             </div>
             <div>
               <label htmlFor="email" className={fieldLabel}>
-                Email
+                {t("email")}
               </label>
               <input
                 id="email"
@@ -132,7 +131,7 @@ export default function ReserveForm() {
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             <div>
               <label htmlFor="date" className={fieldLabel}>
-                Date
+                {t("date")}
               </label>
               <input
                 id="date"
@@ -142,36 +141,33 @@ export default function ReserveForm() {
                 min={today}
                 className={inputClass}
               />
-              <p className="mt-2 text-espresso/45 text-xs">Closed Wednesdays.</p>
             </div>
             <div>
               <label htmlFor="time" className={fieldLabel}>
-                Time
+                {t("time")}
               </label>
               <select id="time" name="time" required className={inputClass} defaultValue="">
-                <option value="" disabled>Choose</option>
-                <optgroup label="Weekdays (10:00 – 15:30)">
-                  {times.map((t) => (
-                    <option key={t} value={t}>{t}</option>
+                <option value="" disabled>—</option>
+                <optgroup label="Weekdays">
+                  {times.map((tm) => (
+                    <option key={tm} value={tm}>{tm}</option>
                   ))}
                 </optgroup>
-                <optgroup label="Weekends (09:30 – 16:00)">
-                  {weekendTimes.map((t) => (
-                    <option key={`w-${t}`} value={t}>{t}</option>
+                <optgroup label="Weekends">
+                  {weekendTimes.map((tm) => (
+                    <option key={`w-${tm}`} value={tm}>{tm}</option>
                   ))}
                 </optgroup>
               </select>
             </div>
             <div>
               <label htmlFor="party" className={fieldLabel}>
-                Party Size
+                {t("party")}
               </label>
               <select id="party" name="party" required className={inputClass} defaultValue="">
-                <option value="" disabled>Choose</option>
+                <option value="" disabled>—</option>
                 {partySizes.map((p) => (
-                  <option key={p} value={p}>
-                    {p}
-                  </option>
+                  <option key={p} value={p}>{p}</option>
                 ))}
               </select>
             </div>
@@ -179,7 +175,7 @@ export default function ReserveForm() {
 
           <div>
             <label htmlFor="phone" className={fieldLabel}>
-              Phone (optional)
+              {t("phone")}
             </label>
             <input
               id="phone"
@@ -192,13 +188,12 @@ export default function ReserveForm() {
 
           <div>
             <label htmlFor="notes" className={fieldLabel}>
-              A note for the kitchen (optional)
+              {t("notes")}
             </label>
             <textarea
               id="notes"
               name="notes"
               rows={3}
-              placeholder="Allergies, occasion, a quiet corner — anything we should know."
               className={`${inputClass} resize-none`}
             />
           </div>
@@ -208,7 +203,7 @@ export default function ReserveForm() {
               type="submit"
               className="group inline-flex items-center gap-3 bg-espresso text-cream px-8 py-4 text-xs tracking-[0.25em] uppercase hover:bg-ochre hover:text-ink transition-colors duration-300"
             >
-              Send request
+              {t("send")}
               <span
                 aria-hidden
                 className="transition-transform duration-500 group-hover:translate-x-1"
@@ -217,14 +212,14 @@ export default function ReserveForm() {
               </span>
             </button>
             <p className="mt-6 text-espresso/55 text-sm">
-              Or message us on{" "}
+              {t("messageUs")}{" "}
               <a
                 href={site.brand.instagramUrl}
                 target="_blank"
                 rel="noreferrer noopener"
                 className="hover:text-ochre transition-colors border-b border-espresso/40 hover:border-ochre"
               >
-                Instagram
+                {t("instagram")}
               </a>
               .
             </p>
