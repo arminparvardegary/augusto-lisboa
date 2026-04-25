@@ -43,7 +43,6 @@ export default function ReserveFlow() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<FormValues>({ defaultValues: { partySize: 2 } });
 
@@ -77,7 +76,6 @@ export default function ReserveFlow() {
     };
   }, []);
 
-  const partySize = Number(watch("partySize") || 2);
   const day =
     status.kind === "ready"
       ? status.days.find((d) => d.date === selectedDay)
@@ -133,7 +131,6 @@ export default function ReserveFlow() {
   }
 
   const { days } = status;
-  const partyLabel = partySize === 1 ? t("person") : t("people");
 
   return (
     <div className="space-y-12">
@@ -304,17 +301,9 @@ export default function ReserveFlow() {
               />
             </Field>
 
-            <div className="bg-warmwhite border border-espresso/10 p-5 text-sm text-espresso/85">
-              <div className="flex items-baseline justify-between">
-                <span>{t("holdFee")}</span>
-                <span className="heading-display text-xl">
-                  €{(partySize * 3).toFixed(2)}
-                </span>
-              </div>
-              <p className="mt-2 text-xs text-espresso/60 leading-relaxed">
-                {t("holdFeeNote", { count: partySize, label: partyLabel })}
-              </p>
-            </div>
+            <p className="text-xs text-espresso/55 leading-relaxed">
+              {t("policyNote")}
+            </p>
 
             {serverError && (
               <div className="border-l-2 border-red-700 pl-4 text-sm text-red-700">
@@ -335,10 +324,6 @@ export default function ReserveFlow() {
                 →
               </span>
             </button>
-
-            <p className="text-xs text-espresso/50 leading-relaxed">
-              {t("stripeNote")}
-            </p>
           </motion.form>
         )}
       </AnimatePresence>

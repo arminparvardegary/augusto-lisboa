@@ -70,13 +70,10 @@ export default function ConfirmationEmail({
               {partySize === 1 ? "seat" : "seats"} at{" "}
               <strong>{timeSlot}</strong> with your name on it.
             </Text>
-            {holdFeePaid > 0 && (
-              <Text style={{ fontSize: 16, lineHeight: 1.6 }}>
-                Your €{fee} hold comes off your bill when you arrive. Running
-                late? Just reply to this email. We&apos;ll do our best to
-                keep your table.
-              </Text>
-            )}
+            <Text style={{ fontSize: 16, lineHeight: 1.6 }}>
+              Running late or plans changed? Just reply to this email and
+              we&apos;ll do our best to keep your table.
+            </Text>
             <Text
               style={{
                 fontStyle: "italic",

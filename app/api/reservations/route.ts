@@ -1,12 +1,7 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { prisma, isDbConfigured } from "@/lib/prisma";
-import {
-  HOLD_FEE_PER_PERSON_CENTS,
-  TABLES_PER_SLOT,
-  isWednesday,
-} from "@/lib/availability";
-import { getStripe, isStripeConfigured } from "@/lib/stripe";
+import { TABLES_PER_SLOT, isWednesday } from "@/lib/availability";
 import { getResend, FROM_EMAIL, isResendConfigured } from "@/lib/resend";
 import { renderConfirmationEmail } from "@/emails/Confirmation";
 
@@ -80,67 +75,23 @@ export async function POST(req: Request) {
         timeSlot: body.timeSlot,
         notes: body.notes || null,
         language: body.language,
-        status: "PENDING",
+        status: "CONFIRMED",
         holdFeePaid: 0,
       },
-    });
-
-    // If Stripe is wired up, redirect to Checkout for the hold fee.
-    if (isStripeConfigured) {
-      const stripe = getStripe();
-      const session = await stripe.checkout.sessions.create({
-        mode: "payment",
-        payment_method_types: ["card"],
-        customer_email: body.email,
-        line_items: [
-          {
-            price_data: {
-              currency: "eur",
-              unit_amount: HOLD_FEE_PER_PERSON_CENTS,
-              product_data: {
-                name: "Augusto Lisboa · Hold your table",
-                description:
-                  "€3 per person to hold your table. Comes off your bill on the day.",
-              },
-            },
-            quantity: body.partySize,
-          },
-        ],
-        metadata: { reservationId: reservation.id },
-        success_url: `${process.env.NEXT_PUBLIC_URL ?? ""}/reserve/confirmed?id=${reservation.id}`,
-        cancel_url: `${process.env.NEXT_PUBLIC_URL ?? ""}/reserve?cancelled=1`,
-      });
-
-      await prisma.reservation.update({
-        where: { id: reservation.id },
-        data: { stripeId: session.id },
-      });
-
-      return NextResponse.json({
-        mode: "stripe",
-        url: session.url,
-        reservationId: reservation.id,
-      });
-    }
-
-    // No Stripe configured — confirm directly and send email if Resend is set up.
-    const confirmed = await prisma.reservation.update({
-      where: { id: reservation.id },
-      data: { status: "CONFIRMED" },
     });
 
     if (isResendConfigured) {
       try {
         const html = await renderConfirmationEmail({
-          name: confirmed.name,
-          partySize: confirmed.partySize,
-          date: confirmed.date,
-          timeSlot: confirmed.timeSlot,
-          holdFeePaid: confirmed.holdFeePaid,
+          name: reservation.name,
+          partySize: reservation.partySize,
+          date: reservation.date,
+          timeSlot: reservation.timeSlot,
+          holdFeePaid: 0,
         });
         await getResend().emails.send({
           from: FROM_EMAIL,
-          to: confirmed.email,
+          to: reservation.email,
           subject: "We've saved your table at Augusto",
           html,
         });
@@ -150,9 +101,8 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json({
-      mode: "direct",
-      reservationId: confirmed.id,
-      url: `/reserve/confirmed?id=${confirmed.id}`,
+      reservationId: reservation.id,
+      url: `/reserve/confirmed?id=${reservation.id}`,
     });
   } catch (err) {
     console.error("reservation error", err);
